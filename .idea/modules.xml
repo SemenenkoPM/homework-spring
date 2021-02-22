@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Coffee-xml-configuration/Coffee-xml-configuration.iml" filepath="$PROJECT_DIR$/Coffee-xml-configuration/Coffee-xml-configuration.iml" />
+      <module fileurl="file://$PROJECT_DIR$/homework-spring.iml" filepath="$PROJECT_DIR$/homework-spring.iml" />
+    </modules>
+  </component>
+</project>
