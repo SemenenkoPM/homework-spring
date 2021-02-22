@@ -16,7 +16,7 @@ public class CoffeeHouseImpl implements CoffeeHouse {
         coffeeService.printCoffeeMenu();
         System.out.println("за какую стоимость кофе хочешь?");
         int price = scanner.nextInt();
-        System.out.println("Вот твой кофе " + coffeeService.getCoffeeByPrice(price));
+        System.out.println("Ваш выбор " + coffeeService.getCoffeeByPrice(price));
 
     }
 }
