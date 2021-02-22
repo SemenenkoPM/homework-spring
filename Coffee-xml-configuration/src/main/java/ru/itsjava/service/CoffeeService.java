@@ -1,6 +1,8 @@
 package ru.itsjava.service;
 
-public interface CoffeeService {
+import ru.itsjava.domain.Coffee;
 
+public interface CoffeeService {
+    Coffee getCoffeeByPrice(int price);
 
 }
