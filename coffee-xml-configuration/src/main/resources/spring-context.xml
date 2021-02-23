@@ -4,11 +4,11 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="coffeeService" class="ru.itsjava.service.CoffeeServiceImpl">
+    <bean id="coffeeService" class="ru.CoffeeServiceImpl">
         <!-- collaborators and configuration for this bean go here -->
     </bean>
 
-    <bean id="coffeeHouse" class="ru.itsjava.service.CoffeeHouseImpl">
+    <bean id="coffeeHouse" class="ru.CoffeeHouseImpl">
         <constructor-arg ref="coffeeService"/>
     </bean>
 

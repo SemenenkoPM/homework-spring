@@ -7,13 +7,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Coffee-xml-configuration" />
-        <module name="cofee-java-based-configuration" />
+        <module name="coffee-annotation-based-configuration" />
+        <module name="coffee-xml-configuration" />
+        <module name="coffee-java-based-configuration" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="cofee-java-based-configuration" target="15" />
-      <module name="Coffee-xml-configuration" target="15" />
+      <module name="coffee-annotation-based-configuration" target="15" />
+      <module name="coffee-java-based-configuration" target="15" />
+      <module name="coffee-xml-configuration" target="15" />
       <module name="homework-spring" target="15" />
     </bytecodeTargetLevel>
   </component>
