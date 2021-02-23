@@ -8,9 +8,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Coffee-xml-configuration" />
+        <module name="cofee-java-based-configuration" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="cofee-java-based-configuration" target="15" />
       <module name="Coffee-xml-configuration" target="15" />
       <module name="homework-spring" target="15" />
     </bytecodeTargetLevel>
