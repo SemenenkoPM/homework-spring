@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/coffee-annotation-based-configuration/coffee-annotation-based-configuration.iml" filepath="$PROJECT_DIR$/coffee-annotation-based-configuration/coffee-annotation-based-configuration.iml" />
+      <module fileurl="file://$PROJECT_DIR$/coffee-aop/coffee-aop.iml" filepath="$PROJECT_DIR$/coffee-aop/coffee-aop.iml" />
       <module fileurl="file://$PROJECT_DIR$/coffee-java-based-configuration/coffee-java-based-configuration.iml" filepath="$PROJECT_DIR$/coffee-java-based-configuration/coffee-java-based-configuration.iml" />
       <module fileurl="file://$PROJECT_DIR$/coffee-xml-configuration/coffee-xml-configuration.iml" filepath="$PROJECT_DIR$/coffee-xml-configuration/coffee-xml-configuration.iml" />
       <module fileurl="file://$PROJECT_DIR$/homework-spring.iml" filepath="$PROJECT_DIR$/homework-spring.iml" />

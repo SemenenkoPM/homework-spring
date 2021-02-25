@@ -12,6 +12,7 @@
         <module>Coffee-xml-configuration</module>
         <module>cofee-java-based-configuration</module>
         <module>coffee-annotation-based-configuration</module>
+        <module>coffee-aop</module>
     </modules>
 
     <properties>
