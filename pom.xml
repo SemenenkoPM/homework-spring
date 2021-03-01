@@ -13,6 +13,7 @@
         <module>cofee-java-based-configuration</module>
         <module>coffee-annotation-based-configuration</module>
         <module>coffee-aop</module>
+        <module>from-vodeo-spring-ripper</module>
     </modules>
 
     <properties>

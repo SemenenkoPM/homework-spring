@@ -17,7 +17,7 @@ public class CoffeeServiceImpl implements CoffeeService {
                 return coffee;
             }
         }
-        throw new NoSuchElementException();
+        throw  new NoSuchElementException();
     }
 
     @Override
