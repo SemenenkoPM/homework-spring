@@ -22,6 +22,7 @@
         <module>coffee-aop</module>
         <module>from-video-spring-ripper</module>
         <module>spring-boot</module>
+        <module>spring-boot-with-conditional</module>
     </modules>
 
     <properties>

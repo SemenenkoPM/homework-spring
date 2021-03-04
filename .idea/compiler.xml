@@ -7,12 +7,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="spring-boot" />
+        <module name="spring-boot-with-conditional" />
         <module name="coffee-annotation-based-configuration" />
         <module name="coffee-aop" />
-        <module name="from-video-spring-ripper" />
         <module name="coffee-xml-configuration" />
         <module name="coffee-java-based-configuration" />
+        <module name="spring-boot" />
+        <module name="from-video-spring-ripper" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -23,6 +24,7 @@
       <module name="from-video-spring-ripper" target="15" />
       <module name="homework-spring" target="15" />
       <module name="spring-boot" target="15" />
+      <module name="spring-boot-with-conditional" target="15" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -33,6 +35,7 @@
       <module name="coffee-xml-configuration" options="-parameters" />
       <module name="from-video-spring-ripper" options="-parameters" />
       <module name="spring-boot" options="-parameters" />
+      <module name="spring-boot-with-conditional" options="-parameters" />
     </option>
   </component>
 </project>

@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/from-video-spring-ripper/from-video-spring-ripper.iml" filepath="$PROJECT_DIR$/from-video-spring-ripper/from-video-spring-ripper.iml" />
       <module fileurl="file://$PROJECT_DIR$/homework-spring.iml" filepath="$PROJECT_DIR$/homework-spring.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-boot/spring-boot.iml" filepath="$PROJECT_DIR$/spring-boot/spring-boot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-with-conditional/spring-boot-with-conditional.iml" filepath="$PROJECT_DIR$/spring-boot-with-conditional/spring-boot-with-conditional.iml" />
     </modules>
   </component>
 </project>
