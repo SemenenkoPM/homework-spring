@@ -23,10 +23,13 @@ public class UserServiceImpl implements UserService{
     @Override
     public void printMenu(){
         System.out.println("выберите пункт меню \n" +
-                "1. Создать пользователя");
+                "1. Создать пользователя\n" +
+                "2. Вывести всех пользователей");
         int selectedMenuNumber = scanner.nextInt();
         if(selectedMenuNumber == 1){
             createUser();
+        } else if (selectedMenuNumber == 2){
+
         }
     }
 
@@ -50,5 +53,11 @@ public class UserServiceImpl implements UserService{
         petJdbc.createPet(pet);
         emailJdbc.createEmail(email);
         userJdbc.createUser(user);
+    }
+
+    @Override
+    public void printAllUsers() {
+
+
     }
 }
