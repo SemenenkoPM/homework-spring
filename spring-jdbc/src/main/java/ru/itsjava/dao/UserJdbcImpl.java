@@ -9,13 +9,11 @@ import ru.itsjava.domain.User;
 @RequiredArgsConstructor
 public class UserJdbcImpl implements UserJdbc{
     private final JdbcOperations jdbcOperations;
+    private final PetJdbcImpl petJdbc;
+    private final EmailJdbcImpl emailJdbc;
 
     @Override
     public void createUser(User user) {
-    jdbcOperations.update("insert into pet(what_pet, name) values (?,?)", user.getPet().getWhatPet(), user.getPet().getName());
-    long petId = jdbcOperations.queryForObject("select max(id) from pet", Long.class);
-    jdbcOperations.update("insert into email(email) values (?)", user.getEmail().getEmail());
-    long emailId = jdbcOperations.queryForObject("select max(id) from email", Long.class);
-    jdbcOperations.update("insert into users(surname, name, email_id, pet_id) values (?, ?, ?, ?)", user.getSurname(), user.getName(), emailId, petId);
-    }
+    jdbcOperations.update("insert into users(surname, name, email_id, pet_id) values (?, ?, ?, ?)", user.getSurname(), user.getName(), emailJdbc.getEmailId() , petJdbc.getPetId());
+    } // Как вернуть созданный id?
 }

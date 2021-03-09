@@ -3,6 +3,8 @@ package ru.itsjava.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import ru.itsjava.dao.EmailJdbc;
+import ru.itsjava.dao.PetJdbc;
 import ru.itsjava.dao.UserJdbc;
 import ru.itsjava.domain.Email;
 import ru.itsjava.domain.Pet;
@@ -14,6 +16,8 @@ import java.util.Scanner;
 @Service
 public class UserServiceImpl implements UserService{
     private final UserJdbc userJdbc;
+    private final PetJdbc petJdbc;
+    private final EmailJdbc emailJdbc;
     Scanner scanner = new Scanner(System.in);
 
     @Override
@@ -29,17 +33,22 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void createUser() {
-        System.out.println("Введите фамилию пользоателя");
+        scanner.nextLine(); // здесь если не поставить сканнер, то пропускает surname?
+        System.out.println("Введите фамилию пользователя");
         String surname = scanner.nextLine();
         System.out.println("Введите имя пользователя");
         String name = scanner.nextLine();
-        System.out.println("Введите почту пользоателя");
-        String email = scanner.nextLine();
+        System.out.println("Введите почту пользователя");
+        String inputEmail = scanner.nextLine();
         System.out.println("Какой зверушкой обладает пользователь");
         String whatPet = scanner.nextLine();
         System.out.println("Как зовут зверушку");
         String petName = scanner.nextLine();
-        User user = new User(surname, name, new Email(email), new Pet(whatPet, petName));
+        User user = new User(surname, name);
+        Pet pet = new Pet(whatPet, petName);
+        Email email = new Email(inputEmail);
+        petJdbc.createPet(pet);
+        emailJdbc.createEmail(email);
         userJdbc.createUser(user);
     }
 }
