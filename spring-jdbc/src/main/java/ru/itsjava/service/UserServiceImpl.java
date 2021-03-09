@@ -14,22 +14,25 @@ import java.util.Scanner;
 
 @RequiredArgsConstructor
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
     private final UserJdbc userJdbc;
     private final PetJdbc petJdbc;
     private final EmailJdbc emailJdbc;
     Scanner scanner = new Scanner(System.in);
 
     @Override
-    public void printMenu(){
+    public void printMenu() {
         System.out.println("выберите пункт меню \n" +
                 "1. Создать пользователя\n" +
-                "2. Вывести всех пользователей");
+                "2. Вывести всех пользователей\n" +
+                "3. Вывести пользователя по id");
         int selectedMenuNumber = scanner.nextInt();
-        if(selectedMenuNumber == 1){
+        if (selectedMenuNumber == 1) {
             createUser();
-        } else if (selectedMenuNumber == 2){
+        } else if (selectedMenuNumber == 2) {
 
+        } else if (selectedMenuNumber == 3) {
+            getUserById();
         }
     }
 
@@ -59,5 +62,12 @@ public class UserServiceImpl implements UserService{
     public void printAllUsers() {
 
 
+    }
+
+    @Override
+    public void getUserById() {
+        System.out.println("Введите id пользователя");
+        long id = scanner.nextLong();
+        System.out.println(userJdbc.getUserById(id));
     }
 }

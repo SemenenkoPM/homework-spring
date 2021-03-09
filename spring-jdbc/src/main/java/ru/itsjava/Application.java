@@ -15,11 +15,13 @@ public class Application {
     public static void main(String[] args) throws SQLException {
         var context = SpringApplication.run(Application.class);
         UserService userService = context.getBean(UserService.class);
-        userService.printMenu();
 
 
 
 
         Console.main();
+        while (true) {
+            userService.printMenu();
+        }
     }
 }
