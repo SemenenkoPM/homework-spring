@@ -3,7 +3,10 @@ package ru.itsjava.dao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import ru.itsjava.domain.User;
 
@@ -19,10 +22,37 @@ public class UserJdbcImpl implements UserJdbc{
     private final PetJdbcImpl petJdbc;
     private final EmailJdbcImpl emailJdbc;
 
+
+    // jdbcOperations
+//    @Override
+//    public void createUser(User user) {
+//        HashMap<String, Object> params = new HashMap<>();
+//        params.put("surname", user.getSurname());
+//        params.put("name", user.getName());
+//        jdbcOperations.update("insert into users(surname, name, email_id, pet_id) values (?, ?, ?, ?)", user.getSurname(), user.getName(), emailJdbc.getEmailId() , petJdbc.getPetId());
+//    }
+
+    // NamedParameterJdbcOperations
+//    @Override
+//    public void createUser(User user) {
+//        HashMap<String, Object> params = new HashMap<>();
+//        params.put("surname", user.getSurname());
+//        params.put("name", user.getName());
+//        namedParameterJdbcOperations.update("insert into users(surname, name) values (:surname, :name)", params);
+//    }
+
+    // KeyHolder
     @Override
     public void createUser(User user) {
-    jdbcOperations.update("insert into users(surname, name, email_id, pet_id) values (?, ?, ?, ?)", user.getSurname(), user.getName(), emailJdbc.getEmailId() , petJdbc.getPetId());
-    } // Как вернуть созданный id?
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue("surname", user.getSurname());
+        parameterSource.addValue("name", user.getName());
+        KeyHolder keyHolderUserId = new GeneratedKeyHolder();
+        namedParameterJdbcOperations.update("insert into users(surname, name) values (:surname, :name)", parameterSource, keyHolderUserId);
+        System.out.println("keyHolderUserId.getKey(): " + keyHolderUserId.getKey());
+        System.out.println("keyHolderUserId from pet: " + petJdbc.getKeyHolderPetId().getKey());
+    }
+
 
     @Override
     public void printAllUsers() {
