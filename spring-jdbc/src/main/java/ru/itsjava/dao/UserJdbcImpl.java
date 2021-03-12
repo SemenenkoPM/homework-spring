@@ -1,7 +1,7 @@
 package ru.itsjava.dao;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.jdbc.core.JdbcOperations;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
@@ -13,13 +13,13 @@ import ru.itsjava.domain.Pet;
 import ru.itsjava.domain.User;
 
 import java.sql.ResultSet;
+import java.sql.SQLDataException;
 import java.sql.SQLException;
 import java.util.HashMap;
 
 @Repository
 @RequiredArgsConstructor
 public class UserJdbcImpl implements UserJdbc {
-    private final JdbcOperations jdbcOperations;
     private final NamedParameterJdbcOperations namedParameterJdbcOperations;
 
     KeyHolder keyHolderUserId = new GeneratedKeyHolder();
@@ -60,12 +60,13 @@ public class UserJdbcImpl implements UserJdbc {
     }
 
     @Override
-    public User getUserById(long id) {
+    public User getUserById(long id) throws EmptyResultDataAccessException {
         HashMap<String, Object> params = new HashMap<>();
         params.put("id", id);
         return namedParameterJdbcOperations.queryForObject("select u.id, u.surname, u.name, e.email, p.what_pet, p.name from users u, email e, pet p where u.id =:id and e.users_id = u.id and p.users_id = u.id",
                 params, new UserMapper());
-    }
+        }
+
 
     private static class UserMapper implements RowMapper<User> {
 

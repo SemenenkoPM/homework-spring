@@ -1,6 +1,7 @@
 package ru.itsjava.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import ru.itsjava.dao.EmailJdbc;
@@ -10,6 +11,8 @@ import ru.itsjava.domain.Email;
 import ru.itsjava.domain.Pet;
 import ru.itsjava.domain.User;
 
+import java.sql.SQLDataException;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 @RequiredArgsConstructor
@@ -68,6 +71,12 @@ public class UserServiceImpl implements UserService {
     public void getUserById() {
         System.out.println("Введите id пользователя");
         long id = scanner.nextLong();
+        try {
         System.out.println(userJdbc.getUserById(id));
+        } catch (EmptyResultDataAccessException emptyResultDataAccessException){
+            System.err.println("Нет такого пользователя c таким id");
+        } finally {
+            printMenu();
+        }
     }
 }
