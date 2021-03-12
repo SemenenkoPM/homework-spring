@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+import ru.itsjava.domain.Email;
+import ru.itsjava.domain.Pet;
 import ru.itsjava.domain.User;
 
 import java.sql.ResultSet;
@@ -61,7 +63,7 @@ public class UserJdbcImpl implements UserJdbc {
     public User getUserById(long id) {
         HashMap<String, Object> params = new HashMap<>();
         params.put("id", id);
-        return namedParameterJdbcOperations.queryForObject("select id, surname, name from users where id =:id",
+        return namedParameterJdbcOperations.queryForObject("select u.id, u.surname, u.name, e.email, p.what_pet, p.name from users u, email e, pet p where u.id =:id and e.users_id = u.id and p.users_id = u.id",
                 params, new UserMapper());
     }
 
@@ -69,7 +71,12 @@ public class UserJdbcImpl implements UserJdbc {
 
         @Override
         public User mapRow(ResultSet resultSet, int i) throws SQLException {
-            return new User(resultSet.getLong("id"), resultSet.getString("surname"), resultSet.getString("name"));
+            return new User(resultSet.getLong("id"), resultSet.getString("surname"), resultSet.getString("name"),
+                new Email(resultSet.getString("email.email")),
+                    new Pet(resultSet.getString("what_pet"), resultSet.getString("name")));
+
+
+
         }
     }
 }

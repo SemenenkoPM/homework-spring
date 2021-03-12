@@ -1,12 +1,27 @@
 package ru.itsjava.domain;
 
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.Getter;
 
-@RequiredArgsConstructor
-@Data
+@Getter
+// вопрос, когда делал маппер, то для создания сделал конструктор руками, ???
 public class Email {
     private long id;
     private final String email;
-    private final long userId;
+    private long userId;
+
+    public Email(String email, long userId) {
+        this.email = email;
+        this.userId = userId;
+    }
+
+    public Email(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Email{" +
+                "email='" + email + '\'' +
+                '}';
+    }
 }
