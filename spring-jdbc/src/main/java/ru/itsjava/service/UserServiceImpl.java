@@ -51,11 +51,11 @@ public class UserServiceImpl implements UserService {
         System.out.println("Как зовут зверушку");
         String petName = scanner.nextLine();
         User user = new User(surname, name);
-        Pet pet = new Pet(whatPet, petName);
-        Email email = new Email(inputEmail);
-        petJdbc.createPet(pet);
+        long userIdReseived = userJdbc.createUser(user);
+        Email email = new Email(inputEmail, userIdReseived);
+        Pet pet = new Pet(whatPet, petName, userIdReseived);
         emailJdbc.createEmail(email);
-        userJdbc.createUser(user);
+        petJdbc.createPet(pet);
     }
 
     @Override

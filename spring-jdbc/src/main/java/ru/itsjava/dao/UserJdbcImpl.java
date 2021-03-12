@@ -16,11 +16,11 @@ import java.util.HashMap;
 
 @Repository
 @RequiredArgsConstructor
-public class UserJdbcImpl implements UserJdbc{
+public class UserJdbcImpl implements UserJdbc {
     private final JdbcOperations jdbcOperations;
     private final NamedParameterJdbcOperations namedParameterJdbcOperations;
-    private final PetJdbcImpl petJdbc;
-    private final EmailJdbcImpl emailJdbc;
+
+    KeyHolder keyHolderUserId = new GeneratedKeyHolder();
 
 
     // jdbcOperations
@@ -43,16 +43,14 @@ public class UserJdbcImpl implements UserJdbc{
 
     // KeyHolder
     @Override
-    public void createUser(User user) {
+    public Long createUser(User user) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("surname", user.getSurname());
         parameterSource.addValue("name", user.getName());
-        KeyHolder keyHolderUserId = new GeneratedKeyHolder();
         namedParameterJdbcOperations.update("insert into users(surname, name) values (:surname, :name)", parameterSource, keyHolderUserId);
         System.out.println("keyHolderUserId.getKey(): " + keyHolderUserId.getKey());
-        System.out.println("keyHolderUserId from pet: " + petJdbc.getKeyHolderPetId().getKey());
+        return (Long) keyHolderUserId.getKey();
     }
-
 
     @Override
     public void printAllUsers() {
@@ -67,7 +65,7 @@ public class UserJdbcImpl implements UserJdbc{
                 params, new UserMapper());
     }
 
-    private static class UserMapper implements RowMapper<User>{
+    private static class UserMapper implements RowMapper<User> {
 
         @Override
         public User mapRow(ResultSet resultSet, int i) throws SQLException {

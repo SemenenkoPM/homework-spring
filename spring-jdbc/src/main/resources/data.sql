@@ -1,9 +1,9 @@
-INSERT INTO pet (what_pet, name)
-VALUES ('ZVEREK', 'ZVEREK');
+INSERT INTO users (surname, name)
+VALUES ('PETROV', 'PETR');
 
-INSERT INTO email (email)
-VALUES ('43243@ff.com');
+INSERT INTO pet (what_pet, name, users_id)
+VALUES ('Крокодил', 'Гена', 1);
 
 
-INSERT INTO users (surname, name, email_id, pet_id)
-VALUES ('PETROV', 'PETR', 1, 1);
+INSERT INTO email (email, users_id)
+VALUES ('43243@ff.com', 1);
