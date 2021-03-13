@@ -27,7 +27,8 @@ public class UserServiceImpl implements UserService {
                 "1. Создать пользователя\n" +
                 "2. Вывести всех пользователей\n" +
                 "3. Вывести пользователя по id\n" +
-                "4. Изменить email пользователя");
+                "4. Изменить email пользователя\n" +
+                "5. Изменить зверушку пользователя");
         int selectedMenuNumber = scanner.nextInt();
         if (selectedMenuNumber == 1) {
             createUser();
@@ -37,6 +38,8 @@ public class UserServiceImpl implements UserService {
             getUserById();
         } if (selectedMenuNumber == 4){
             updateEmailUserById();
+        } if (selectedMenuNumber == 5){
+            updatePetUserById();
         }
     }
 
@@ -90,5 +93,17 @@ public class UserServiceImpl implements UserService {
         scanner.nextLine(); // если не поставить, то не считывает следующую строчку
         String newEmail = scanner.nextLine();
         emailJdbc.updateEmailUserById(id, newEmail);
+    }
+
+    @Override
+    public void updatePetUserById() {
+        System.out.println("Введите id пользователя, кому меняем зверушку");
+        long id = scanner.nextLong();
+        scanner.nextLine(); // если не поставить, то не считывает следующую строчку
+        System.out.println("Введите какая теперь зверушка у пользователя");
+        String whatPet = scanner.nextLine();
+        System.out.println("Введите как зовут новую зверушку");
+        String name = scanner.nextLine();
+        petJdbc.updatePetUserById(id, whatPet, name);
     }
 }

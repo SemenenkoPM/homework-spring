@@ -28,4 +28,13 @@ public class PetJdbcImpl implements PetJdbc {
         parameterSource.addValue("userId", pet.getUserId());
         namedParameterJdbcOperations.update("insert into pet (what_pet, name, users_id) values (:whatPet, :name, :userId)", parameterSource);
     }
+
+    @Override
+    public void updatePetUserById(long id, String whatPet, String name) {
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue("id", id);
+        parameterSource.addValue("whatPet", whatPet);
+        parameterSource.addValue("name", name);
+        namedParameterJdbcOperations.update("update pet set what_pet = :whatPet, name = :name where users_id = :id", parameterSource);
+    }
 }
