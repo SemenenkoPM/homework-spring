@@ -27,14 +27,16 @@ public class UserServiceImpl implements UserService {
                 "1. Создать пользователя\n" +
                 "2. Вывести всех пользователей\n" +
                 "3. Вывести пользователя по id\n" +
-                "4. Изменить имя пользователя");
+                "4. Изменить email пользователя");
         int selectedMenuNumber = scanner.nextInt();
         if (selectedMenuNumber == 1) {
             createUser();
-        } else if (selectedMenuNumber == 2) {
+        } if (selectedMenuNumber == 2) {
             printAllUsers();
-        } else if (selectedMenuNumber == 3) {
+        } if (selectedMenuNumber == 3) {
             getUserById();
+        } if (selectedMenuNumber == 4){
+            updateEmailUserById();
         }
     }
 
@@ -75,8 +77,18 @@ public class UserServiceImpl implements UserService {
         System.out.println(userJdbc.getUserById(id));
         } catch (EmptyResultDataAccessException emptyResultDataAccessException){
             System.err.println("Нет пользователя c таким id");
-        } finally {
             printMenu();
         }
+    }
+
+// нужна проверка есть ли такой id пользователя
+    @Override
+    public void updateEmailUserById() {
+        System.out.println("Введите id пользователя, кому меняем email");
+        long id = scanner.nextLong();
+        System.out.println("Введите новый email");
+        scanner.nextLine(); // если не поставить, то не считывает следующую строчку
+        String newEmail = scanner.nextLine();
+        emailJdbc.updateEmailUserById(id, newEmail);
     }
 }

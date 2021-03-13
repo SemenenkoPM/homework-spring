@@ -9,4 +9,6 @@ public interface UserService {
 
     void getUserById();
 
+    void updateEmailUserById();
+
 }
