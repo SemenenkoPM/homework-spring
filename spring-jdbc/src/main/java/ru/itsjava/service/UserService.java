@@ -13,4 +13,7 @@ public interface UserService {
 
     void updatePetUserById();
 
+    void deleteUserById();
+
+
 }

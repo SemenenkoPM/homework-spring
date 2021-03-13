@@ -13,11 +13,9 @@ import ru.itsjava.domain.Pet;
 import ru.itsjava.domain.User;
 
 import java.sql.ResultSet;
-import java.sql.SQLDataException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 @RequiredArgsConstructor
@@ -70,7 +68,17 @@ public class UserJdbcImpl implements UserJdbc {
         params.put("id", id);
         return namedParameterJdbcOperations.queryForObject("select u.id, u.surname, u.name, e.email, p.what_pet, p.name from users u, email e, pet p where u.id =:id and e.users_id = u.id and p.users_id = u.id",
                 params, new UserMapper());
-        }
+    }
+
+    @Override
+    public void deleteUserById(long id) {
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue("id", id);
+        namedParameterJdbcOperations.update("delete from pet where users_id = :id", parameterSource);
+        namedParameterJdbcOperations.update("delete from email where users_id = :id", parameterSource);
+        namedParameterJdbcOperations.update("delete from users where id = :id", parameterSource);
+        // написать один запрос на все таблицы
+    }
 // сокращения в запросе
 
     private static class UserMapper implements RowMapper<User> {
@@ -78,7 +86,7 @@ public class UserJdbcImpl implements UserJdbc {
         @Override
         public User mapRow(ResultSet resultSet, int i) throws SQLException {
             return new User(resultSet.getLong("id"), resultSet.getString("surname"), resultSet.getString("name"),
-                new Email(resultSet.getString("email.email")),
+                    new Email(resultSet.getString("email.email")),
                     new Pet(resultSet.getString("what_pet"), resultSet.getString("pet.name")));
             // почему в мапере при совпадении а разных обьектах name, если не указывать pet.name берет имя из user
             // как работает мапер

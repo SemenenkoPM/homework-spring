@@ -16,7 +16,6 @@ public class Application {
         var context = SpringApplication.run(Application.class);
         UserService userService = context.getBean(UserService.class);
 
-
         Console.main();
         while (true) {
             userService.printMenu();

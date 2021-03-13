@@ -28,21 +28,28 @@ public class UserServiceImpl implements UserService {
                 "2. Вывести всех пользователей\n" +
                 "3. Вывести пользователя по id\n" +
                 "4. Изменить email пользователя\n" +
-                "5. Изменить зверушку пользователя");
+                "5. Изменить зверушку пользователя\n" +
+                "6. Удалить пользователя по id");
         int selectedMenuNumber = scanner.nextInt();
         if (selectedMenuNumber == 1) {
             createUser();
-        } if (selectedMenuNumber == 2) {
+        }
+        if (selectedMenuNumber == 2) {
             printAllUsers();
-        } if (selectedMenuNumber == 3) {
+        }
+        if (selectedMenuNumber == 3) {
             getUserById();
-        } if (selectedMenuNumber == 4){
+        }
+        if (selectedMenuNumber == 4) {
             updateEmailUserById();
-        } if (selectedMenuNumber == 5){
+        }
+        if (selectedMenuNumber == 5) {
             updatePetUserById();
         }
+        if (selectedMenuNumber == 6) {
+            deleteUserById();
+        }
     }
-
 
     @Override
     public void createUser() {
@@ -67,7 +74,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void printAllUsers() {
-        for(Object object : userJdbc.printAllUsers()){ // без цикла печать идет в строчку?
+        for (Object object : userJdbc.printAllUsers()) { // без цикла печать идет в строчку?
             System.out.println(object);
         }
     }
@@ -77,14 +84,14 @@ public class UserServiceImpl implements UserService {
         System.out.println("Введите id пользователя");
         long id = scanner.nextLong();
         try {
-        System.out.println(userJdbc.getUserById(id));
-        } catch (EmptyResultDataAccessException emptyResultDataAccessException){
+            System.out.println(userJdbc.getUserById(id));
+        } catch (EmptyResultDataAccessException emptyResultDataAccessException) {
             System.err.println("Нет пользователя c таким id");
             printMenu();
         }
     }
 
-// нужна проверка есть ли такой id пользователя
+    // нужна проверка есть ли такой id пользователя
     @Override
     public void updateEmailUserById() {
         System.out.println("Введите id пользователя, кому меняем email");
@@ -105,5 +112,12 @@ public class UserServiceImpl implements UserService {
         System.out.println("Введите как зовут новую зверушку");
         String name = scanner.nextLine();
         petJdbc.updatePetUserById(id, whatPet, name);
+    }
+
+    @Override
+    public void deleteUserById() {
+        System.out.println("Введите id пользователя, которого удаляем");
+        long id = scanner.nextLong();
+        userJdbc.deleteUserById(id);
     }
 }
