@@ -1,10 +1,8 @@
 package ru.itsjava.domain;
 
 import lombok.Getter;
-import lombok.ToString;
 
 @Getter
-@ToString
 public class User {
     private long id;
     private final String surname;
@@ -23,5 +21,9 @@ public class User {
         this.name = name;
         this.email = email;
         this.pet = pet;
+    }
+
+    public String toString() {
+        return "User(id=" + this.getId() + ", surname=" + this.getSurname() + ", name=" + this.getName() + ", email=" + this.getEmail() + ", pet=" + this.getPet() + ")";
     }
 }

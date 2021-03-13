@@ -16,6 +16,8 @@ import java.sql.ResultSet;
 import java.sql.SQLDataException;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Repository
 @RequiredArgsConstructor
@@ -55,8 +57,11 @@ public class UserJdbcImpl implements UserJdbc {
     }
 
     @Override
-    public void printAllUsers() {
-
+    public List<User> printAllUsers() {
+        HashMap<String, Integer> params = new HashMap<>();
+        params.put("id", 1);
+// как правильно задать params, ведь получается в запросе я беру u.id>0
+        return namedParameterJdbcOperations.query("select u.id, u.surname, u.name, e.email, p.what_pet, p.name from users u, email e, pet p where u.id >0 and e.users_id = u.id and p.users_id = u.id", params, new UserMapper());
     }
 
     @Override
@@ -66,7 +71,7 @@ public class UserJdbcImpl implements UserJdbc {
         return namedParameterJdbcOperations.queryForObject("select u.id, u.surname, u.name, e.email, p.what_pet, p.name from users u, email e, pet p where u.id =:id and e.users_id = u.id and p.users_id = u.id",
                 params, new UserMapper());
         }
-
+// сокращения в запросе
 
     private static class UserMapper implements RowMapper<User> {
 
@@ -74,10 +79,9 @@ public class UserJdbcImpl implements UserJdbc {
         public User mapRow(ResultSet resultSet, int i) throws SQLException {
             return new User(resultSet.getLong("id"), resultSet.getString("surname"), resultSet.getString("name"),
                 new Email(resultSet.getString("email.email")),
-                    new Pet(resultSet.getString("what_pet"), resultSet.getString("name")));
-
-
-
+                    new Pet(resultSet.getString("what_pet"), resultSet.getString("pet.name")));
+            // почему в мапере при совпадении а разных обьектах name, если не указывать pet.name берет имя из user
+            // как работает мапер
         }
     }
 }

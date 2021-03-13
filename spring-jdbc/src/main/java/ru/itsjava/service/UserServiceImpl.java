@@ -11,8 +11,6 @@ import ru.itsjava.domain.Email;
 import ru.itsjava.domain.Pet;
 import ru.itsjava.domain.User;
 
-import java.sql.SQLDataException;
-import java.sql.SQLException;
 import java.util.Scanner;
 
 @RequiredArgsConstructor
@@ -28,12 +26,13 @@ public class UserServiceImpl implements UserService {
         System.out.println("выберите пункт меню \n" +
                 "1. Создать пользователя\n" +
                 "2. Вывести всех пользователей\n" +
-                "3. Вывести пользователя по id");
+                "3. Вывести пользователя по id\n" +
+                "4. Изменить имя пользователя");
         int selectedMenuNumber = scanner.nextInt();
         if (selectedMenuNumber == 1) {
             createUser();
         } else if (selectedMenuNumber == 2) {
-
+            printAllUsers();
         } else if (selectedMenuNumber == 3) {
             getUserById();
         }
@@ -54,17 +53,18 @@ public class UserServiceImpl implements UserService {
         System.out.println("Как зовут зверушку");
         String petName = scanner.nextLine();
         User user = new User(surname, name);
-        long userIdReseived = userJdbc.createUser(user);
-        Email email = new Email(inputEmail, userIdReseived);
-        Pet pet = new Pet(whatPet, petName, userIdReseived);
+        long userIdReceived = userJdbc.createUser(user);
+        Email email = new Email(inputEmail, userIdReceived);
+        Pet pet = new Pet(whatPet, petName, userIdReceived);
         emailJdbc.createEmail(email);
         petJdbc.createPet(pet);
     }
 
     @Override
     public void printAllUsers() {
-
-
+        for(Object object : userJdbc.printAllUsers()){ // без цикла печать идет в строчку?
+            System.out.println(object);
+        }
     }
 
     @Override
@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService {
         try {
         System.out.println(userJdbc.getUserById(id));
         } catch (EmptyResultDataAccessException emptyResultDataAccessException){
-            System.err.println("Нет такого пользователя c таким id");
+            System.err.println("Нет пользователя c таким id");
         } finally {
             printMenu();
         }
