@@ -11,6 +11,7 @@ import ru.itsjava.domain.Email;
 import ru.itsjava.domain.Pet;
 import ru.itsjava.domain.User;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 @RequiredArgsConstructor
@@ -66,16 +67,17 @@ public class UserServiceImpl implements UserService {
         String petName = scanner.nextLine();
         User user = new User(surname, name);
         long userIdReceived = userJdbc.createUser(user);
+        user.setId(userIdReceived);
         Email email = new Email(inputEmail, userIdReceived);
         Pet pet = new Pet(whatPet, petName, userIdReceived);
-        emailJdbc.createEmail(email);
+        emailJdbc.createEmail(email); //id в имаил записать и пет
         petJdbc.createPet(pet);
     }
 
     @Override
     public void printAllUsers() {
-        for (Object object : userJdbc.printAllUsers()) { // без цикла печать идет в строчку?
-            System.out.println(object);
+        for (User user : userJdbc.getAllUsers()) { // без цикла печать идет в строчку?
+            System.out.println(user);
         }
     }
 
@@ -83,11 +85,12 @@ public class UserServiceImpl implements UserService {
     public void getUserById() {
         System.out.println("Введите id пользователя");
         long id = scanner.nextLong();
-        try {
-            System.out.println(userJdbc.getUserById(id));
-        } catch (EmptyResultDataAccessException emptyResultDataAccessException) {
+        Optional<User> optionalUser = userJdbc.getUserById(id);
+
+        if (optionalUser.isPresent()) {
+            System.out.println(optionalUser.get());
+        } else {
             System.err.println("Нет пользователя c таким id");
-            printMenu();
         }
     }
 
@@ -96,10 +99,15 @@ public class UserServiceImpl implements UserService {
     public void updateEmailUserById() {
         System.out.println("Введите id пользователя, кому меняем email");
         long id = scanner.nextLong();
-        System.out.println("Введите новый email");
-        scanner.nextLine(); // если не поставить, то не считывает следующую строчку
-        String newEmail = scanner.nextLine();
-        emailJdbc.updateEmailUserById(id, newEmail);
+        Optional<User> optionalUser = userJdbc.getUserById(id);
+        if(optionalUser.isPresent()) {
+            System.out.println("Введите новый email");
+            scanner.nextLine(); // если не поставить, то не считывает следующую строчку
+            String newEmail = scanner.nextLine();
+            emailJdbc.updateEmailUserById(id, newEmail);
+        } else {
+            System.err.println("Нет пользователя c таким id, так что email не поменяем никак");
+        }
     }
 
     @Override

@@ -10,10 +10,11 @@ import ru.itsjava.domain.Email;
 @Data
 public class EmailJdbcImpl implements EmailJdbc {
     private final NamedParameterJdbcOperations namedParameterJdbcOperations;
-    private final MapSqlParameterSource parameterSource = new MapSqlParameterSource();
 
+//
     @Override
     public void createEmail(Email email) {
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("email", email.getEmail());
         parameterSource.addValue("userId", email.getUserId());
         namedParameterJdbcOperations.update("insert into email(email, users_id) values(:email, :userId)", parameterSource);
@@ -24,6 +25,7 @@ public class EmailJdbcImpl implements EmailJdbc {
 
     @Override
     public void updateEmailUserById(long id, String newEmail) {
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("id", id);
         parameterSource.addValue("newEmail", newEmail);
         namedParameterJdbcOperations.update("update email set email = :newEmail where users_id = :id", parameterSource);

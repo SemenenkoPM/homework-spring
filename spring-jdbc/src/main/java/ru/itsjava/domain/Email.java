@@ -1,9 +1,10 @@
 package ru.itsjava.domain;
 
-import lombok.Getter;
 
-@Getter
+import lombok.Data;
+
 // вопрос, когда делал маппер, то для создания сделал конструктор руками, ???
+@Data
 public class Email {
     private long id;
     private final String email;
@@ -18,10 +19,10 @@ public class Email {
         this.email = email;
     }
 
-    @Override
-    public String toString() {
-        return "Email{" +
-                "email='" + email + '\'' +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Email{" +
+//                "email='" + email + '\'' +
+//                '}';
+//    }
 }

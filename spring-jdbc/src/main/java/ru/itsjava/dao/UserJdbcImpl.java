@@ -1,6 +1,8 @@
 package ru.itsjava.dao;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -16,13 +18,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
 public class UserJdbcImpl implements UserJdbc {
     private final NamedParameterJdbcOperations namedParameterJdbcOperations;
 
-    KeyHolder keyHolderUserId = new GeneratedKeyHolder();
+//    private final
+    // почему поле не приватное? ты написал?
+    // и как правильно, выносить для всех методов или создавать в каждом отдельно?
+    // 
 
 
     // jdbcOperations
@@ -43,43 +49,45 @@ public class UserJdbcImpl implements UserJdbc {
 //        namedParameterJdbcOperations.update("insert into users(surname, name) values (:surname, :name)", params);
 //    }
 
-    // KeyHolder
+
     @Override
-    public Long createUser(User user) {
+    public long createUser(User user) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("surname", user.getSurname());
         parameterSource.addValue("name", user.getName());
+        KeyHolder keyHolderUserId = new GeneratedKeyHolder();
         namedParameterJdbcOperations.update("insert into users(surname, name) values (:surname, :name)", parameterSource, keyHolderUserId);
         System.out.println("keyHolderUserId.getKey(): " + keyHolderUserId.getKey());
-        return (Long) keyHolderUserId.getKey();
+        return (long) keyHolderUserId.getKey();
     }
 
     @Override
-    public List<User> printAllUsers() {
-        HashMap<String, Integer> params = new HashMap<>();
-        params.put("id", 1);
-// как правильно задать params, ведь получается в запросе я беру u.id>0
-        return namedParameterJdbcOperations.query("select u.id, u.surname, u.name, e.email, p.what_pet, p.name from users u, email e, pet p where u.id >0 and e.users_id = u.id and p.users_id = u.id", params, new UserMapper());
+    public List<User> getAllUsers() {
+        return namedParameterJdbcOperations.query("select u.id, u.surname, u.name, e.email, p.what_pet, p.name from users u, email e, pet p where e.users_id = u.id and p.users_id = u.id", new UserMapper());
     }
 
     @Override
-    public User getUserById(long id) throws EmptyResultDataAccessException {
+    public Optional<User> getUserById(long id) {
         HashMap<String, Object> params = new HashMap<>();
         params.put("id", id);
-        return namedParameterJdbcOperations.queryForObject("select u.id, u.surname, u.name, e.email, p.what_pet, p.name from users u, email e, pet p where u.id =:id and e.users_id = u.id and p.users_id = u.id",
-                params, new UserMapper());
+        try {
+            return Optional.ofNullable(namedParameterJdbcOperations.queryForObject("select u.id, u.surname, u.name, e.email, p.what_pet, p.name from users u, email e, pet p where u.id =:id and e.users_id = u.id and p.users_id = u.id",
+                    params, new UserMapper()));
+        } catch (DataAccessException ex) {
+            return Optional.empty();
+        }
     }
 
     @Override
     public void deleteUserById(long id) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("id", id);
-        namedParameterJdbcOperations.update("delete from pet where users_id = :id", parameterSource);
-        namedParameterJdbcOperations.update("delete from email where users_id = :id", parameterSource);
+//        namedParameterJdbcOperations.update("delete from pet where users_id = :id", parameterSource);
+//        namedParameterJdbcOperations.update("delete from email where users_id = :id", parameterSource);
         namedParameterJdbcOperations.update("delete from users where id = :id", parameterSource);
         // написать один запрос на все таблицы
     }
-// сокращения в запросе
+
 
     private static class UserMapper implements RowMapper<User> {
 
@@ -88,8 +96,6 @@ public class UserJdbcImpl implements UserJdbc {
             return new User(resultSet.getLong("id"), resultSet.getString("surname"), resultSet.getString("name"),
                     new Email(resultSet.getString("email.email")),
                     new Pet(resultSet.getString("what_pet"), resultSet.getString("pet.name")));
-            // почему в мапере при совпадении а разных обьектах name, если не указывать pet.name берет имя из user
-            // как работает мапер
         }
     }
 }

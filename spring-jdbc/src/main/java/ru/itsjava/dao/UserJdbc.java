@@ -3,14 +3,15 @@ package ru.itsjava.dao;
 import ru.itsjava.domain.User;
 
 import java.util.List;
+import java.util.Optional;
 
 
 public interface UserJdbc {
-    Long createUser(User user);
+    long createUser(User user);
 
-    List<User> printAllUsers();
+    List<User> getAllUsers();
 
-    User getUserById(long id);
+    Optional<User> getUserById(long id);
 
     void deleteUserById(long id);
 }
