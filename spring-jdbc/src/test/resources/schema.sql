@@ -19,5 +19,7 @@ CREATE TABLE pet (
     users_id BIGINT
 );
 
-ALTER TABLE email ADD FOREIGN KEY (users_id) REFERENCES users(id);
-ALTER TABLE pet ADD FOREIGN KEY (users_id) REFERENCES users(id);
+ALTER TABLE email
+    ADD FOREIGN KEY (users_id) REFERENCES users (id) on delete cascade;
+ALTER TABLE pet
+    ADD FOREIGN KEY (users_id) REFERENCES users (id) on delete cascade;

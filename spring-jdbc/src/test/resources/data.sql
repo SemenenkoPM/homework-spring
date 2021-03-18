@@ -1,5 +1,5 @@
 INSERT INTO users (surname, name)
-VALUES ('Test User', 'Test name');
+VALUES ('Test surname', 'Test name');
 
 INSERT INTO pet (what_pet, name, users_id)
 VALUES ('Test Pet', 'Test name pet', 1);
