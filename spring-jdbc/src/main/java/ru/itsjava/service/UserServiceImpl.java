@@ -61,15 +61,15 @@ public class UserServiceImpl implements UserService {
         String whatPet = consoleReader.readLine();
         System.out.println("Как зовут зверушку");
         String petName = consoleReader.readLine();
-        User user = new User(surname, name);
+        User user = new User(1L, surname, name, new Email(inputEmail, 1L), new Pet(whatPet, petName, 1L));
         long userIdReceived = userJdbc.createUser(user);
         user.setId(userIdReceived);
-        Email email = new Email(inputEmail, userIdReceived);
-        Pet pet = new Pet(whatPet, petName, userIdReceived);
-        long emailIdReceived = emailJdbc.createEmail(email);
-        email.setId(emailIdReceived);
-        long petIdReceived = petJdbc.createPet(pet);
-        pet.setId(petIdReceived);
+//        Email email = new Email(inputEmail, userIdReceived);
+//        Pet pet = new Pet(whatPet, petName, userIdReceived);
+//        long emailIdReceived = emailJdbc.createEmail(email);
+//        email.setId(emailIdReceived);
+//        long petIdReceived = petJdbc.createPet(pet);
+//        pet.setId(petIdReceived);
     }
 
     @Override

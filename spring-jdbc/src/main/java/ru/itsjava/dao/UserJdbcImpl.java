@@ -22,6 +22,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserJdbcImpl implements UserJdbc {
     private final NamedParameterJdbcOperations namedParameterJdbcOperations;
+    private final EmailJdbc emailJdbc;
+    private final PetJdbc petJdbc;
 
     // jdbcOperations
 //    @Override
@@ -37,8 +39,15 @@ public class UserJdbcImpl implements UserJdbc {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("surname", user.getSurname());
         parameterSource.addValue("name", user.getName());
+        parameterSource.addValue("email", user.getEmail().getEmail());
+        parameterSource.addValue("what_pet", user.getPet().getWhatPet());
+        parameterSource.addValue("namePet", user.getPet().getName());
         KeyHolder keyHolderUserId = new GeneratedKeyHolder();
         namedParameterJdbcOperations.update("insert into users(surname, name) values (:surname, :name)", parameterSource, keyHolderUserId);
+        user.getPet().setUserId((Long) keyHolderUserId.getKey());
+        user.getPet().setId(petJdbc.createPet(user.getPet()));
+        user.getEmail().setUserId((Long) keyHolderUserId.getKey());
+        user.getEmail().setId(emailJdbc.createEmail(user.getEmail()));
         return (long) keyHolderUserId.getKey();
     }
 
