@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
     private final UserJdbc userJdbc;
     private final PetJdbc petJdbc;
     private final EmailJdbc emailJdbc;
-    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    private BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
 
     @Override
     public void printMenu() throws IOException {
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
                 "4. Изменить email пользователя\n" +
                 "5. Изменить зверушку пользователя\n" +
                 "6. Удалить пользователя по id");
-        String selectedMenuNumber = bufferedReader.readLine();
+        String selectedMenuNumber = consoleReader.readLine();
         if (selectedMenuNumber.equals("1")) {
             createUser();
         } else if (selectedMenuNumber.equals("2")) {
@@ -52,15 +52,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public void createUser() throws IOException {
         System.out.println("Введите фамилию пользователя");
-        String surname = bufferedReader.readLine();
+        String surname = consoleReader.readLine();
         System.out.println("Введите имя пользователя");
-        String name = bufferedReader.readLine();
+        String name = consoleReader.readLine();
         System.out.println("Введите почту пользователя");
-        String inputEmail = bufferedReader.readLine();
+        String inputEmail = consoleReader.readLine();
         System.out.println("Какой зверушкой обладает пользователь");
-        String whatPet = bufferedReader.readLine();
+        String whatPet = consoleReader.readLine();
         System.out.println("Как зовут зверушку");
-        String petName = bufferedReader.readLine();
+        String petName = consoleReader.readLine();
         User user = new User(surname, name);
         long userIdReceived = userJdbc.createUser(user);
         user.setId(userIdReceived);
@@ -82,7 +82,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void getUserById() throws IOException {
         System.out.println("Введите id пользователя");
-        long id = Long.parseLong(bufferedReader.readLine());
+        long id = Long.parseLong(consoleReader.readLine());
         Optional<User> optionalUser = userJdbc.getUserById(id);
         if (optionalUser.isPresent()) {
             System.out.println(optionalUser.get());
@@ -94,11 +94,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateEmailUserById() throws IOException {
         System.out.println("Введите id пользователя, кому меняем email");
-        long id = Long.parseLong(bufferedReader.readLine());
+        long id = Long.parseLong(consoleReader.readLine());
         Optional<User> optionalUser = userJdbc.getUserById(id);
         if (optionalUser.isPresent()) {
             System.out.println("Введите новый email");
-            String newEmail = bufferedReader.readLine();
+            String newEmail = consoleReader.readLine();
             emailJdbc.updateEmailUserById(id, newEmail);
         } else {
             System.err.println("Нет пользователя c таким id, так что email не поменяем никак");
@@ -108,13 +108,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updatePetUserById() throws IOException {
         System.out.println("Введите id пользователя, кому меняем зверушку");
-        long id = Long.parseLong(bufferedReader.readLine());
+        long id = Long.parseLong(consoleReader.readLine());
         Optional<User> optionalUser = userJdbc.getUserById(id);
         if (optionalUser.isPresent()) {
             System.out.println("Введите какая теперь зверушка у пользователя");
-            String whatPet = bufferedReader.readLine();
+            String whatPet = consoleReader.readLine();
             System.out.println("Введите как зовут новую зверушку");
-            String name = bufferedReader.readLine();
+            String name = consoleReader.readLine();
             petJdbc.updatePetUserById(id, whatPet, name);
         } else System.err.println("Нет пользователя с таким id, так что зверушку мы не поменяем никак");
     }
@@ -122,7 +122,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUserById() throws IOException {
         System.out.println("Введите id пользователя, которого удаляем");
-        long id = Long.parseLong(bufferedReader.readLine());
+        long id = Long.parseLong(consoleReader.readLine());
         Optional<User> optionalUser = userJdbc.getUserById(id);
         if (optionalUser.isPresent()) {
             userJdbc.deleteUserById(id);
