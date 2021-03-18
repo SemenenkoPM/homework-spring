@@ -1,9 +1,7 @@
 package ru.itsjava.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
-
 import ru.itsjava.dao.EmailJdbc;
 import ru.itsjava.dao.PetJdbc;
 import ru.itsjava.dao.UserJdbc;
@@ -11,8 +9,10 @@ import ru.itsjava.domain.Email;
 import ru.itsjava.domain.Pet;
 import ru.itsjava.domain.User;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Optional;
-import java.util.Scanner;
 
 @RequiredArgsConstructor
 @Service
@@ -20,10 +20,10 @@ public class UserServiceImpl implements UserService {
     private final UserJdbc userJdbc;
     private final PetJdbc petJdbc;
     private final EmailJdbc emailJdbc;
-    Scanner scanner = new Scanner(System.in);
+    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
     @Override
-    public void printMenu() {
+    public void printMenu() throws IOException {
         System.out.println("выберите пункт меню \n" +
                 "1. Создать пользователя\n" +
                 "2. Вывести всех пользователей\n" +
@@ -31,62 +31,59 @@ public class UserServiceImpl implements UserService {
                 "4. Изменить email пользователя\n" +
                 "5. Изменить зверушку пользователя\n" +
                 "6. Удалить пользователя по id");
-        int selectedMenuNumber = scanner.nextInt();
-        if (selectedMenuNumber == 1) {
+        String selectedMenuNumber = bufferedReader.readLine();
+        if (selectedMenuNumber.equals("1")) {
             createUser();
-        }
-        if (selectedMenuNumber == 2) {
+        } else if (selectedMenuNumber.equals("2")) {
             printAllUsers();
-        }
-        if (selectedMenuNumber == 3) {
+        } else if (selectedMenuNumber.equals("3")) {
             getUserById();
-        }
-        if (selectedMenuNumber == 4) {
+        } else if (selectedMenuNumber.equals("4")) {
             updateEmailUserById();
-        }
-        if (selectedMenuNumber == 5) {
+        } else if (selectedMenuNumber.equals("5")) {
             updatePetUserById();
-        }
-        if (selectedMenuNumber == 6) {
+        } else if (selectedMenuNumber.equals("6")) {
             deleteUserById();
+        } else {
+            System.out.println("Нет такого пункта меню, выбери существующий пункт меню");
         }
     }
 
     @Override
-    public void createUser() {
-        scanner.nextLine(); // здесь если не поставить сканнер, то пропускает surname?
+    public void createUser() throws IOException {
         System.out.println("Введите фамилию пользователя");
-        String surname = scanner.nextLine();
+        String surname = bufferedReader.readLine();
         System.out.println("Введите имя пользователя");
-        String name = scanner.nextLine();
+        String name = bufferedReader.readLine();
         System.out.println("Введите почту пользователя");
-        String inputEmail = scanner.nextLine();
+        String inputEmail = bufferedReader.readLine();
         System.out.println("Какой зверушкой обладает пользователь");
-        String whatPet = scanner.nextLine();
+        String whatPet = bufferedReader.readLine();
         System.out.println("Как зовут зверушку");
-        String petName = scanner.nextLine();
+        String petName = bufferedReader.readLine();
         User user = new User(surname, name);
         long userIdReceived = userJdbc.createUser(user);
         user.setId(userIdReceived);
         Email email = new Email(inputEmail, userIdReceived);
         Pet pet = new Pet(whatPet, petName, userIdReceived);
-        emailJdbc.createEmail(email); //id в имаил записать и пет
-        petJdbc.createPet(pet);
+        long emailIdReceived = emailJdbc.createEmail(email);
+        email.setId(emailIdReceived);
+        long petIdReceived = petJdbc.createPet(pet);
+        pet.setId(petIdReceived);
     }
 
     @Override
     public void printAllUsers() {
-        for (User user : userJdbc.getAllUsers()) { // без цикла печать идет в строчку?
+        for (User user : userJdbc.getAllUsers()) {
             System.out.println(user);
         }
     }
 
     @Override
-    public void getUserById() {
+    public void getUserById() throws IOException {
         System.out.println("Введите id пользователя");
-        long id = scanner.nextLong();
+        long id = Long.parseLong(bufferedReader.readLine());
         Optional<User> optionalUser = userJdbc.getUserById(id);
-
         if (optionalUser.isPresent()) {
             System.out.println(optionalUser.get());
         } else {
@@ -94,16 +91,14 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    // нужна проверка есть ли такой id пользователя
     @Override
-    public void updateEmailUserById() {
+    public void updateEmailUserById() throws IOException {
         System.out.println("Введите id пользователя, кому меняем email");
-        long id = scanner.nextLong();
+        long id = Long.parseLong(bufferedReader.readLine());
         Optional<User> optionalUser = userJdbc.getUserById(id);
-        if(optionalUser.isPresent()) {
+        if (optionalUser.isPresent()) {
             System.out.println("Введите новый email");
-            scanner.nextLine(); // если не поставить, то не считывает следующую строчку
-            String newEmail = scanner.nextLine();
+            String newEmail = bufferedReader.readLine();
             emailJdbc.updateEmailUserById(id, newEmail);
         } else {
             System.err.println("Нет пользователя c таким id, так что email не поменяем никак");
@@ -111,21 +106,26 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updatePetUserById() {
+    public void updatePetUserById() throws IOException {
         System.out.println("Введите id пользователя, кому меняем зверушку");
-        long id = scanner.nextLong();
-        scanner.nextLine(); // если не поставить, то не считывает следующую строчку
-        System.out.println("Введите какая теперь зверушка у пользователя");
-        String whatPet = scanner.nextLine();
-        System.out.println("Введите как зовут новую зверушку");
-        String name = scanner.nextLine();
-        petJdbc.updatePetUserById(id, whatPet, name);
+        long id = Long.parseLong(bufferedReader.readLine());
+        Optional<User> optionalUser = userJdbc.getUserById(id);
+        if (optionalUser.isPresent()) {
+            System.out.println("Введите какая теперь зверушка у пользователя");
+            String whatPet = bufferedReader.readLine();
+            System.out.println("Введите как зовут новую зверушку");
+            String name = bufferedReader.readLine();
+            petJdbc.updatePetUserById(id, whatPet, name);
+        } else System.err.println("Нет пользователя с таким id, так что зверушку мы не поменяем никак");
     }
 
     @Override
-    public void deleteUserById() {
+    public void deleteUserById() throws IOException {
         System.out.println("Введите id пользователя, которого удаляем");
-        long id = scanner.nextLong();
-        userJdbc.deleteUserById(id);
+        long id = Long.parseLong(bufferedReader.readLine());
+        Optional<User> optionalUser = userJdbc.getUserById(id);
+        if (optionalUser.isPresent()) {
+            userJdbc.deleteUserById(id);
+        } else System.err.println("Нет пользователя с таким id, так что некого удалять");
     }
 }

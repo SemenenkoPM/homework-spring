@@ -1,19 +1,21 @@
 package ru.itsjava.service;
 
-public interface UserService {
-    void printMenu();
+import java.io.IOException;
 
-    void createUser();
+public interface UserService {
+    void printMenu() throws IOException;
+
+    void createUser() throws IOException;
 
     void printAllUsers();
 
-    void getUserById();
+    void getUserById() throws IOException;
 
-    void updateEmailUserById();
+    void updateEmailUserById() throws IOException;
 
-    void updatePetUserById();
+    void updatePetUserById() throws IOException;
 
-    void deleteUserById();
+    void deleteUserById() throws IOException;
 
 
 }

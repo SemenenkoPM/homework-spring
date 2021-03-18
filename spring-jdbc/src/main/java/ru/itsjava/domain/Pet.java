@@ -1,8 +1,10 @@
 package ru.itsjava.domain;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class Pet {
     private long id;
     private final String whatPet;

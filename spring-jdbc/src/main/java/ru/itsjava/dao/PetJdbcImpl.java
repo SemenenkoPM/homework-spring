@@ -4,6 +4,8 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import ru.itsjava.domain.Pet;
 
@@ -21,12 +23,14 @@ public class PetJdbcImpl implements PetJdbc {
 //    }
 
     @Override
-    public void createPet(Pet pet) {
+    public long createPet(Pet pet) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        KeyHolder keyHolderPetId = new GeneratedKeyHolder();
         parameterSource.addValue("whatPet", pet.getWhatPet());
         parameterSource.addValue("name", pet.getName());
         parameterSource.addValue("userId", pet.getUserId());
-        namedParameterJdbcOperations.update("insert into pet (what_pet, name, users_id) values (:whatPet, :name, :userId)", parameterSource);
+        namedParameterJdbcOperations.update("insert into pet (what_pet, name, users_id) values (:whatPet, :name, :userId)", parameterSource, keyHolderPetId);
+        return (long) keyHolderPetId.getKey();
     }
 
     @Override

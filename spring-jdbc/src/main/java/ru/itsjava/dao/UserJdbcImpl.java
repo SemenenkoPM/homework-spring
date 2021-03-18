@@ -1,9 +1,7 @@
 package ru.itsjava.dao;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
@@ -25,12 +23,6 @@ import java.util.Optional;
 public class UserJdbcImpl implements UserJdbc {
     private final NamedParameterJdbcOperations namedParameterJdbcOperations;
 
-//    private final
-    // почему поле не приватное? ты написал?
-    // и как правильно, выносить для всех методов или создавать в каждом отдельно?
-    // 
-
-
     // jdbcOperations
 //    @Override
 //    public void createUser(User user) {
@@ -40,16 +32,6 @@ public class UserJdbcImpl implements UserJdbc {
 //        jdbcOperations.update("insert into users(surname, name, email_id, pet_id) values (?, ?, ?, ?)", user.getSurname(), user.getName(), emailJdbc.getEmailId() , petJdbc.getPetId());
 //    }
 
-    // NamedParameterJdbcOperations
-//    @Override
-//    public void createUser(User user) {
-//        HashMap<String, Object> params = new HashMap<>();
-//        params.put("surname", user.getSurname());
-//        params.put("name", user.getName());
-//        namedParameterJdbcOperations.update("insert into users(surname, name) values (:surname, :name)", params);
-//    }
-
-
     @Override
     public long createUser(User user) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
@@ -57,7 +39,6 @@ public class UserJdbcImpl implements UserJdbc {
         parameterSource.addValue("name", user.getName());
         KeyHolder keyHolderUserId = new GeneratedKeyHolder();
         namedParameterJdbcOperations.update("insert into users(surname, name) values (:surname, :name)", parameterSource, keyHolderUserId);
-        System.out.println("keyHolderUserId.getKey(): " + keyHolderUserId.getKey());
         return (long) keyHolderUserId.getKey();
     }
 
@@ -82,12 +63,9 @@ public class UserJdbcImpl implements UserJdbc {
     public void deleteUserById(long id) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("id", id);
-//        namedParameterJdbcOperations.update("delete from pet where users_id = :id", parameterSource);
-//        namedParameterJdbcOperations.update("delete from email where users_id = :id", parameterSource);
         namedParameterJdbcOperations.update("delete from users where id = :id", parameterSource);
-        // написать один запрос на все таблицы
-    }
 
+    }
 
     private static class UserMapper implements RowMapper<User> {
 
