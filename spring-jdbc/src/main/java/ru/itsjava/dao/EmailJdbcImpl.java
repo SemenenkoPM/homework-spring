@@ -1,6 +1,7 @@
 package ru.itsjava.dao;
 
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import ru.itsjava.domain.Email;
 
 @Repository
+@RequiredArgsConstructor
 @Data
 public class EmailJdbcImpl implements EmailJdbc {
     private final NamedParameterJdbcOperations namedParameterJdbcOperations;

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UserJdbc {
-    long createUser(User user);
+    User createUser(User user);
 
     List<User> getAllUsers();
 

@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
     private final UserJdbc userJdbc;
     private final PetJdbc petJdbc;
     private final EmailJdbc emailJdbc;
-    private BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
+    private final BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
 
     @Override
     public void printMenu() throws IOException {
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
         } else if (selectedMenuNumber.equals("6")) {
             deleteUserById();
         } else {
-            System.out.println("Нет такого пункта меню, выбери существующий пункт меню");
+            System.err.println("Нет такого пункта меню, выбери существующий пункт меню");
         }
     }
 
@@ -62,14 +62,8 @@ public class UserServiceImpl implements UserService {
         System.out.println("Как зовут зверушку");
         String petName = consoleReader.readLine();
         User user = new User(1L, surname, name, new Email(inputEmail, 1L), new Pet(whatPet, petName, 1L));
-        long userIdReceived = userJdbc.createUser(user);
-        user.setId(userIdReceived);
-//        Email email = new Email(inputEmail, userIdReceived);
-//        Pet pet = new Pet(whatPet, petName, userIdReceived);
-//        long emailIdReceived = emailJdbc.createEmail(email);
-//        email.setId(emailIdReceived);
-//        long petIdReceived = petJdbc.createPet(pet);
-//        pet.setId(petIdReceived);
+        userJdbc.createUser(user);
+        System.out.println("Создали нового пользователя: " + user);
     }
 
     @Override
