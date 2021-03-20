@@ -10,7 +10,7 @@ import ru.itsjava.domain.Email;
 import ru.itsjava.domain.Pet;
 import ru.itsjava.domain.User;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 @JdbcTest
@@ -21,7 +21,7 @@ public class UserJdbcImplTest {
     @Autowired
     private UserJdbc userJdbc;
 
-    private final User testUser = new User(1L, "Test surname", "Test name", new Email("test email", 1L), new Pet("Test pet", "Test pet name", 1L));
+    private final User testUser = new User(1L, "Test surname", "Test name", new Email("test email", 1L), new Pet("Test pet name","Test pet",  1L));
 
     @DisplayName("Корректно создавать пользователя")
     @Test

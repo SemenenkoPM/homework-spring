@@ -9,7 +9,7 @@ public interface UserService {
 
     void printAllUsers();
 
-    void getUserById() throws IOException;
+    void printUserById() throws IOException;
 
     void updateEmailUserById() throws IOException;
 

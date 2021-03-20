@@ -26,19 +26,19 @@ public class PetJdbcImpl implements PetJdbc {
     public long createPet(Pet pet) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         KeyHolder keyHolderPetId = new GeneratedKeyHolder();
-        parameterSource.addValue("whatPet", pet.getWhatPet());
         parameterSource.addValue("name", pet.getName());
+        parameterSource.addValue("whatPet", pet.getWhatPet());
         parameterSource.addValue("userId", pet.getUserId());
-        namedParameterJdbcOperations.update("insert into pet (what_pet, name, users_id) values (:whatPet, :name, :userId)", parameterSource, keyHolderPetId);
+        namedParameterJdbcOperations.update("insert into pet (name, what_pet, users_id) values (:name, :whatPet, :userId)", parameterSource, keyHolderPetId);
         return (long) keyHolderPetId.getKey();
     }
 
     @Override
-    public void updatePetUserById(long id, String whatPet, String name) {
+    public void updatePetUserById(long id, String name, String whatPet) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("id", id);
-        parameterSource.addValue("whatPet", whatPet);
         parameterSource.addValue("name", name);
-        namedParameterJdbcOperations.update("update pet set what_pet = :whatPet, name = :name where users_id = :id", parameterSource);
+        parameterSource.addValue("whatPet", whatPet);
+        namedParameterJdbcOperations.update("update pet set name = :name, what_pet = :whatPet where users_id = :id", parameterSource);
     }
 }

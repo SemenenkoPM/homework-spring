@@ -24,28 +24,30 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void printMenu() throws IOException {
-        System.out.println("выберите пункт меню \n" +
-                "1. Создать пользователя\n" +
-                "2. Вывести всех пользователей\n" +
-                "3. Вывести пользователя по id\n" +
-                "4. Изменить email пользователя\n" +
-                "5. Изменить зверушку пользователя\n" +
-                "6. Удалить пользователя по id");
-        String selectedMenuNumber = consoleReader.readLine();
-        if (selectedMenuNumber.equals("1")) {
-            createUser();
-        } else if (selectedMenuNumber.equals("2")) {
-            printAllUsers();
-        } else if (selectedMenuNumber.equals("3")) {
-            getUserById();
-        } else if (selectedMenuNumber.equals("4")) {
-            updateEmailUserById();
-        } else if (selectedMenuNumber.equals("5")) {
-            updatePetUserById();
-        } else if (selectedMenuNumber.equals("6")) {
-            deleteUserById();
-        } else {
-            System.err.println("Нет такого пункта меню, выбери существующий пункт меню");
+        while (true) {
+            System.out.println("выберите пункт меню \n" +
+                    "1. Создать пользователя\n" +
+                    "2. Вывести всех пользователей\n" +
+                    "3. Вывести пользователя по id\n" +
+                    "4. Изменить email пользователя\n" +
+                    "5. Изменить зверушку пользователя\n" +
+                    "6. Удалить пользователя по id");
+            String selectedMenuNumber = consoleReader.readLine();
+            if (selectedMenuNumber.equals("1")) {
+                createUser();
+            } else if (selectedMenuNumber.equals("2")) {
+                printAllUsers();
+            } else if (selectedMenuNumber.equals("3")) {
+                printUserById();
+            } else if (selectedMenuNumber.equals("4")) {
+                updateEmailUserById();
+            } else if (selectedMenuNumber.equals("5")) {
+                updatePetUserById();
+            } else if (selectedMenuNumber.equals("6")) {
+                deleteUserById();
+            } else {
+                System.err.println("Нет такого пункта меню, выбери существующий пункт меню");
+            }
         }
     }
 
@@ -57,11 +59,11 @@ public class UserServiceImpl implements UserService {
         String name = consoleReader.readLine();
         System.out.println("Введите почту пользователя");
         String inputEmail = consoleReader.readLine();
-        System.out.println("Какой зверушкой обладает пользователь");
-        String whatPet = consoleReader.readLine();
         System.out.println("Как зовут зверушку");
         String petName = consoleReader.readLine();
-        User user = new User(1L, surname, name, new Email(inputEmail, 1L), new Pet(whatPet, petName, 1L));
+        System.out.println("Какой зверушкой обладает пользователь");
+        String whatPet = consoleReader.readLine();
+        User user = new User(1L, surname, name, new Email(inputEmail, 1L), new Pet(petName, whatPet, 1L));
         userJdbc.createUser(user);
         System.out.println("Создали нового пользователя: " + user);
     }
@@ -74,7 +76,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void getUserById() throws IOException {
+    public void printUserById() throws IOException {
         System.out.println("Введите id пользователя");
         long id = Long.parseLong(consoleReader.readLine());
         Optional<User> optionalUser = userJdbc.getUserById(id);
@@ -105,11 +107,11 @@ public class UserServiceImpl implements UserService {
         long id = Long.parseLong(consoleReader.readLine());
         Optional<User> optionalUser = userJdbc.getUserById(id);
         if (optionalUser.isPresent()) {
-            System.out.println("Введите какая теперь зверушка у пользователя");
-            String whatPet = consoleReader.readLine();
             System.out.println("Введите как зовут новую зверушку");
             String name = consoleReader.readLine();
-            petJdbc.updatePetUserById(id, whatPet, name);
+            System.out.println("Введите какая теперь зверушка у пользователя");
+            String whatPet = consoleReader.readLine();
+            petJdbc.updatePetUserById(id, name, whatPet);
         } else System.err.println("Нет пользователя с таким id, так что зверушку мы не поменяем никак");
     }
 

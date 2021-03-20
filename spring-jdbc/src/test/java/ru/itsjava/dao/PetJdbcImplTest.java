@@ -23,9 +23,9 @@ public class PetJdbcImplTest {
     @DisplayName("Корректно изменять зверушку по id пользователя")
     @Test
     public void shouldHaveCorrectUpdatePetUserById(){
-        User testUser = new User(1L, "Test surname", "Test name", new Email("test email", 1L), new Pet("Test pet", "Test pet name", 1L));
+        User testUser = new User(1L, "Test surname", "Test name", new Email("test email", 1L), new Pet("Test pet name","Test pet",  1L));
         User receivedUser = userJdbc.createUser(testUser);
-        petJdbc.updatePetUserById(receivedUser.getPet().getUserId(), "new testPet", "new testName");
+        petJdbc.updatePetUserById(receivedUser.getPet().getUserId(), "new testName", "new testPet");
         User userAfterUpdatePetUserById = userJdbc.getUserById(receivedUser.getId()).get();
         Assertions.assertEquals("new testPet", userAfterUpdatePetUserById.getPet().getWhatPet());
         Assertions.assertEquals("new testName", userAfterUpdatePetUserById.getPet().getName());

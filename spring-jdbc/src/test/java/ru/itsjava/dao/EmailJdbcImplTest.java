@@ -22,7 +22,7 @@ public class EmailJdbcImplTest {
     @DisplayName("Корректно изменять email по id пользователя")
     @Test
     public void shouldHaveCorrectUpdateEmailUserById() {
-        User testUser = new User(1L, "Test surname", "Test name", new Email("test email", 1L), new Pet("Test pet", "Test pet name", 1L));
+        User testUser = new User(1L, "Test surname", "Test name", new Email("test email", 1L), new Pet("Test pet name", "Test pet", 1L));
         User receivedUser = userJdbc.createUser(testUser);
         emailJdbc.updateEmailUserById(receivedUser.getEmail().getUserId(), "new testEmail");
         User userAfterUpdatePetUserById = userJdbc.getUserById(receivedUser.getId()).get();

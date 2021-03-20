@@ -1,7 +1,7 @@
 package ru.itsjava.dao;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
@@ -40,8 +40,8 @@ public class UserJdbcImpl implements UserJdbc {
         parameterSource.addValue("surname", user.getSurname());
         parameterSource.addValue("name", user.getName());
         parameterSource.addValue("email", user.getEmail().getEmail());
-        parameterSource.addValue("what_pet", user.getPet().getWhatPet());
         parameterSource.addValue("namePet", user.getPet().getName());
+        parameterSource.addValue("what_pet", user.getPet().getWhatPet());
         KeyHolder keyHolderUserId = new GeneratedKeyHolder();
         namedParameterJdbcOperations.update("insert into users(surname, name) values (:surname, :name)", parameterSource, keyHolderUserId);
         user.setId((Long) keyHolderUserId.getKey());
@@ -54,7 +54,7 @@ public class UserJdbcImpl implements UserJdbc {
 
     @Override
     public List<User> getAllUsers() {
-        return namedParameterJdbcOperations.query("select u.id, u.surname, u.name, e.id, e.email, e.users_id, p.id, p.what_pet, p.name, p.users_id from users u, email e, pet p where e.users_id = u.id and p.users_id = u.id", new UserMapper());
+        return namedParameterJdbcOperations.query("select u.id, u.surname, u.name, e.id, e.email, e.users_id, p.id, p.name, p.what_pet, p.users_id from users u, email e, pet p where e.users_id = u.id and p.users_id = u.id", new UserMapper());
     }
 
     @Override
@@ -62,9 +62,9 @@ public class UserJdbcImpl implements UserJdbc {
         HashMap<String, Object> params = new HashMap<>();
         params.put("id", id);
         try {
-            return Optional.ofNullable(namedParameterJdbcOperations.queryForObject("select u.id, u.surname, u.name, e.id, e.email, e.users_id, p.id, p.what_pet, p.name, p.users_id from users u, email e, pet p where u.id =:id and e.users_id = u.id and p.users_id = u.id",
+            return Optional.ofNullable(namedParameterJdbcOperations.queryForObject("select u.id, u.surname, u.name, e.id, e.email, e.users_id, p.id, p.name, p.what_pet, p.users_id from users u, email e, pet p where u.id =:id and e.users_id = u.id and p.users_id = u.id",
                     params, new UserMapper()));
-        } catch (DataAccessException ex) {
+        } catch (EmptyResultDataAccessException exception) {
             return Optional.empty();
         }
     }
@@ -83,7 +83,7 @@ public class UserJdbcImpl implements UserJdbc {
         public User mapRow(ResultSet resultSet, int i) throws SQLException {
             return new User(resultSet.getLong("id"), resultSet.getString("surname"), resultSet.getString("name"),
                     new Email(resultSet.getLong("email.id"), resultSet.getString("email.email"), resultSet.getLong("email.users_id")),
-                    new Pet(resultSet.getLong("pet.id"),resultSet.getString("what_pet"), resultSet.getString("pet.name"), resultSet.getLong("pet.users_id")));
+                    new Pet(resultSet.getLong("pet.id"), resultSet.getString("pet.name"), resultSet.getString("what_pet"), resultSet.getLong("pet.users_id")));
         }
     }
 }
