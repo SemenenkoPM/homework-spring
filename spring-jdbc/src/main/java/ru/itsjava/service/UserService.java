@@ -1,21 +1,16 @@
 package ru.itsjava.service;
 
-import java.io.IOException;
+import ru.itsjava.domain.User;
 
 public interface UserService {
-    void printMenu() throws IOException;
 
-    void createUser() throws IOException;
+    boolean checkingIfUserExistsWithThisId(long id);
+
+    User createUser(User user);
 
     void printAllUsers();
 
-    void printUserById() throws IOException;
+    void printUserById(long id);
 
-    void updateEmailUserById() throws IOException;
-
-    void updatePetUserById() throws IOException;
-
-    void deleteUserById() throws IOException;
-
-
+    void deleteUserById(long id);
 }
