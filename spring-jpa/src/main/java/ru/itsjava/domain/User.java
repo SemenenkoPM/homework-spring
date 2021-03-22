@@ -24,10 +24,10 @@ public class User {
     private String name;
 
     @OneToOne
-    @JoinColumn(name = "email_id")
+//    @JoinColumn(name = "email_id")
     private Email email;
 
-    @OneToMany(targetEntity = Pet.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private List<Pet> pets;
+    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "user_id")
+    private Pet pet;
 }

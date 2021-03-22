@@ -18,7 +18,7 @@ public class Pet {
     private String name;
     private String whatPet;
 
-    @Column(name = "user_id")
-    private long userId;
+//    @Column(name = "user_id")
+//    private long userId;
 
 }
