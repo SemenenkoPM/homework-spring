@@ -11,6 +11,7 @@
       <module fileurl="file://$PROJECT_DIR$/spring-boot/spring-boot.iml" filepath="$PROJECT_DIR$/spring-boot/spring-boot.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-boot-with-conditional/spring-boot-with-conditional.iml" filepath="$PROJECT_DIR$/spring-boot-with-conditional/spring-boot-with-conditional.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-jdbc/spring-jdbc.iml" filepath="$PROJECT_DIR$/spring-jdbc/spring-jdbc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-jpa/spring-jpa.iml" filepath="$PROJECT_DIR$/spring-jpa/spring-jpa.iml" />
     </modules>
   </component>
 </project>
