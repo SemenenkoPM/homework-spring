@@ -1,13 +1,10 @@
-package ru.itsjava.menu;
+package ru.itsjava.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.itsjava.domain.Email;
 import ru.itsjava.domain.Pet;
 import ru.itsjava.domain.User;
-import ru.itsjava.service.EmailService;
-import ru.itsjava.service.PetService;
-import ru.itsjava.service.UserService;
 
 import java.io.BufferedReader;
 import java.io.IOException;

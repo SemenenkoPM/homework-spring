@@ -1,4 +1,4 @@
-package ru.itsjava.menu;
+package ru.itsjava.service;
 
 import java.io.IOException;
 
