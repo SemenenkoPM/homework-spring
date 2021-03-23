@@ -11,11 +11,17 @@ import javax.persistence.*;
 @Data
 @Entity
 // почему такие конструкторы, не файнал поля
+
 public class Email {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name = "email_id", nullable = false)
     private long id;
 
     private String email;
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
+    User user;
+
 
 }

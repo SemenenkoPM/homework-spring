@@ -23,11 +23,12 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @OneToOne
-//    @JoinColumn(name = "email_id")
-    private Email email;
+//    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+////    @JoinColumn(name = "email_id", nullable = false)
+////    @MapsId
+//    private Email email;
 
-    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "user_id")
-    private Pet pet;
+//    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JoinColumn(name = "pet_id")
+//    private Pet pet;
 }

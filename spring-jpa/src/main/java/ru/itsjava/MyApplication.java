@@ -21,7 +21,8 @@ public class MyApplication {
 
 
         Console.main();
-        userService.createUser(new User(0L, "testSurname", "name", new Email(0L, "inputEmail" ), new Pet(0L, "petName", "whatPet")));
+       userService.createUser(new User(0L, "testSurname", "name"));
+//         userService.createUser(new User(1L, "testSurname", "name", new Email(0L, "inputEmail" ), new Pet(0L, "petName", "whatPet")));
 //        mainMenu.printMenu();
     }
 }

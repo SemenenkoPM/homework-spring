@@ -61,9 +61,9 @@ public class MainMenuImpl implements MainMenu {
         String petName = consoleReader.readLine();
         System.out.println("Какой зверушкой обладает пользователь");
         String whatPet = consoleReader.readLine();
-        User user = new User(0L, surname, name, new Email(0L, inputEmail ), new Pet(0L, petName, whatPet));
-        User createdUser = userService.createUser(user);
-        System.out.println("Создали нового пользователя: " + createdUser);
+//        User user = new User(0L, surname, name, new Email(0L, inputEmail ), new Pet(0L, petName, whatPet));
+//        User createdUser = userService.createUser(user);
+//        System.out.println("Создали нового пользователя: " + createdUser);
     }
 
 //    @Override
