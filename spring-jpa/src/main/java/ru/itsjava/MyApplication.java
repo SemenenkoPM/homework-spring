@@ -16,13 +16,13 @@ import java.sql.SQLException;
 public class MyApplication {
     public static void main(String[] args) throws SQLException, IOException {
         var context = SpringApplication.run(MyApplication.class);
-//        MainMenu mainMenu = context.getBean(MainMenu.class);
-        UserService userService = context.getBean(UserService.class);
+        MainMenu mainMenu = context.getBean(MainMenu.class);
+//        UserService userService = context.getBean(UserService.class);
 
 
         Console.main();
-       userService.createUser(new User(0L, "testSurname", "name"));
+//       userService.createUser(new User(0L, "testSurname", "name"));
 //         userService.createUser(new User(1L, "testSurname", "name", new Email(0L, "inputEmail" ), new Pet(0L, "petName", "whatPet")));
-//        mainMenu.printMenu();
+        mainMenu.printMenu();
     }
 }

@@ -19,7 +19,8 @@ public class Email {
     private long id;
 
     private String email;
-    @OneToOne(fetch = FetchType.LAZY)
+
+    @OneToOne(fetch = FetchType.EAGER) // при ленивой загрузке падает почему
     @MapsId
     User user;
 

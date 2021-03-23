@@ -1,26 +1,22 @@
 package ru.itsjava.repository;
 
-
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import ru.itsjava.domain.User;
+import ru.itsjava.domain.Email;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
 @Transactional
 @Repository
-public class UserRepositoryImpl implements UserRepository {
+public class EmailRepositoryImpl implements EmailRepository{
     @PersistenceContext
     private EntityManager entityManager;
-
     @Override
-    public User saveUser(User user) {
-        if (user.getId() == 0L) {
-            entityManager.persist(user);
-            return user;
+    public Email saveEmail(Email email) {
+        if (email.getId() == 0L) {
+            entityManager.persist(email);
+            return email;
         }
-        return entityManager.merge(user);
+        return entityManager.merge(email);
     }
-
 }

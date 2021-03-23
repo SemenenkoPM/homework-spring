@@ -15,8 +15,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MainMenuImpl implements MainMenu {
     private final UserService userService;
-//    private final EmailService emailService;
-//    private final PetService petService;
+    private final EmailService emailService;
+    private final PetService petService;
 
     private final BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -61,9 +61,13 @@ public class MainMenuImpl implements MainMenu {
         String petName = consoleReader.readLine();
         System.out.println("Какой зверушкой обладает пользователь");
         String whatPet = consoleReader.readLine();
-//        User user = new User(0L, surname, name, new Email(0L, inputEmail ), new Pet(0L, petName, whatPet));
-//        User createdUser = userService.createUser(user);
-//        System.out.println("Создали нового пользователя: " + createdUser);
+        User user = new User(0L, surname, name);
+        User createdUser = userService.createUser(user);
+        Email email = new Email(user.getId(), inputEmail, user);
+        Email createdEmail = emailService.createEmail(email);
+        Pet pet = new Pet(user.getId(), petName, whatPet, user);
+        Pet createdPet = petService.createPet(pet);
+        System.out.println("Создали нового пользователя: " + createdUser + createdEmail + createdPet);
     }
 
 //    @Override

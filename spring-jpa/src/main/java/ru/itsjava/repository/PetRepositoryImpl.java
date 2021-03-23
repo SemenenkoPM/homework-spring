@@ -1,26 +1,25 @@
 package ru.itsjava.repository;
 
-
+import jdk.jfr.Registered;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import ru.itsjava.domain.User;
+import ru.itsjava.domain.Pet;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Transactional
 @Repository
-public class UserRepositoryImpl implements UserRepository {
+public class PetRepositoryImpl implements PetRepository{
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
-    public User saveUser(User user) {
-        if (user.getId() == 0L) {
-            entityManager.persist(user);
-            return user;
+    public Pet savePet(Pet pet) {
+        if (pet.getId() == 0L) {
+            entityManager.persist(pet);
+            return pet;
         }
-        return entityManager.merge(user);
+        return entityManager.merge(pet);
     }
-
 }
