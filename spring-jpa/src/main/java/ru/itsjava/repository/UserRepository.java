@@ -4,4 +4,8 @@ import ru.itsjava.domain.User;
 
 public interface UserRepository {
     User saveUser(User user);
+
+    boolean checkingIfUserExistsWithThisId(long id);
+
+    User getUserById(long id);
 }

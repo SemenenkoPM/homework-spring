@@ -8,7 +8,7 @@ public interface MainMenu {
 
     void dataEntryForUserCreation() throws IOException;
 
-//    void inputAndCheckIdForPrintUserById() throws IOException;
+    void inputAndCheckIdForPrintUserById() throws IOException;
 //
 //    void inputAndCheckIdForUpdateEmailUserById() throws IOException;
 //

@@ -12,4 +12,9 @@ private final EmailRepository emailRepository;
     public Email createEmail(Email email) {
         return emailRepository.saveEmail(email);
     }
+
+    @Override
+    public void updateEmailUserById(long id, String newEmail) {
+
+    }
 }

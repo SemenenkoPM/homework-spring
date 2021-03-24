@@ -14,4 +14,14 @@ public class UserServiceImpl implements UserService{
     public User createUser(User user) {
         return userRepository.saveUser(user);
     }
+
+    @Override
+    public void printUserById(long id) {
+        System.out.println(userRepository.getUserById(id));
+    }
+
+    @Override
+    public boolean checkingIfUserExistsWithThisId(long id) {
+        return userRepository.checkingIfUserExistsWithThisId(id);
+    }
 }

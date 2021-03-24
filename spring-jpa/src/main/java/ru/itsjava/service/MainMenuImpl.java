@@ -36,7 +36,7 @@ public class MainMenuImpl implements MainMenu {
             } else if (selectedMenuNumber.equals("2")) {
 //                userService.printAllUsers();
             } else if (selectedMenuNumber.equals("3")) {
-//                inputAndCheckIdForPrintUserById();
+                inputAndCheckIdForPrintUserById();
             } else if (selectedMenuNumber.equals("4")) {
 //                inputAndCheckIdForUpdateEmailUserById();
             } else if (selectedMenuNumber.equals("5")) {
@@ -63,27 +63,27 @@ public class MainMenuImpl implements MainMenu {
         String whatPet = consoleReader.readLine();
         User user = new User(0L, surname, name);
         User createdUser = userService.createUser(user);
-        Email email = new Email(user.getId(), inputEmail, user);
+        Email email = new Email(user.getId(), inputEmail, user); // если ставить ид 0 то падаем
         Email createdEmail = emailService.createEmail(email);
-        Pet pet = new Pet(user.getId(), petName, whatPet, user);
-        Pet createdPet = petService.createPet(pet);
+        Pet pet = new Pet(user.getId(), petName, whatPet, user);// можно ли создать пет без юзера
+        Pet createdPet = petService.createPet(pet);// как сделать чтбы id на уровне базы присваивался у email, pet
         System.out.println("Создали нового пользователя: " + createdUser + createdEmail + createdPet);
     }
 
-//    @Override
-//    public void inputAndCheckIdForPrintUserById() throws IOException {
-//        try {
-//            System.out.println("Введите id пользователя");
-//            long id = Long.parseLong(consoleReader.readLine());
-//            if (userService.checkingIfUserExistsWithThisId(id)) {
-//                userService.printUserById(id);
-//            } else {
-//                System.err.println("Нет пользователя c таким id");
-//            }
-//        } catch (NumberFormatException numberFormatException) {
-//            System.err.println("Некорректно введен Id пользователя, числа вводи!");
-//        }
-//    }
+    @Override
+    public void inputAndCheckIdForPrintUserById() throws IOException {
+        try {
+            System.out.println("Введите id пользователя");
+            long id = Long.parseLong(consoleReader.readLine());
+            if (userService.checkingIfUserExistsWithThisId(id)) {
+                userService.printUserById(id);
+            } else {
+                System.err.println("Нет пользователя c таким id");
+            }
+        } catch (NumberFormatException numberFormatException) {
+            System.err.println("Некорректно введен Id пользователя, числа вводи!");
+        }
+    }
 //
 //    @Override
 //    public void inputAndCheckIdForUpdateEmailUserById() throws IOException {
@@ -93,7 +93,7 @@ public class MainMenuImpl implements MainMenu {
 //            if (userService.checkingIfUserExistsWithThisId(id)) {
 //                System.out.println("Введите новый email");
 //                String newEmail = consoleReader.readLine();
-//                emailService.updateEmailUserById(id, newEmail);
+//                emailService.updateEmailUserById(new Email(id, newEmail, userService.));
 //            } else {
 //                System.err.println("Нет пользователя c таким id, так что email не поменяем никак");
 //            }

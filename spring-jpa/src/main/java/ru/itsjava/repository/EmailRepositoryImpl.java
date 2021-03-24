@@ -19,4 +19,9 @@ public class EmailRepositoryImpl implements EmailRepository{
         }
         return entityManager.merge(email);
     }
+
+    @Override
+    public void updateEmailUserById(Email email) {
+        entityManager.merge(email);
+    }
 }
