@@ -27,17 +27,17 @@ public class MainMenuImpl implements MainMenu {
                     "6. Удалить пользователя по id");
             String selectedMenuNumber = consoleReader.readLine();
             if (selectedMenuNumber.equals("1")) {
-                mainMenuService.dataEntryForUserCreation();
+                mainMenuService.getDataAndPrintCreatedUser();
             } else if (selectedMenuNumber.equals("2")) {
-//                userService.printAllUsers();
+                mainMenuService.printAllUsers();
             } else if (selectedMenuNumber.equals("3")) {
-//                inputAndCheckIdForPrintUserById();
+                mainMenuService.getDataAndCheckIdPrintUserById();
             } else if (selectedMenuNumber.equals("4")) {
-//                inputAndCheckIdForUpdateEmailUserById();
+                mainMenuService.getDataAndCheckIdForUpdateEmailByUserId();
             } else if (selectedMenuNumber.equals("5")) {
-//                inputAndCheckIdForUpdatePetUserById();
+                mainMenuService.getDataAndCheckIdForUpdatePetByUserId();
             } else if (selectedMenuNumber.equals("6")) {
-//                inputAndCheckIdForDeleteUserById();
+                mainMenuService.inputAndCheckIdForDeleteUserById();
             } else {
                 System.err.println("Нет такого пункта меню, выбери существующий пункт меню");
             }

@@ -11,6 +11,4 @@ public class User {
     private final String name;
     private final long emailId;
     private final long petId;
-//    private final Email email;
-//    private final Pet pet;
 }

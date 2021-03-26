@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.itsjava.dao.UserJdbc;
 import ru.itsjava.domain.User;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -12,11 +13,11 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
     private final UserJdbc userJdbc;
 
-//    @Override
-//    public boolean checkingIfUserExistsWithThisId(long id) {
-//        Optional<User> optionalUser = userJdbc.getUserById(id);
-//        return optionalUser.isPresent();
-//    }
+    @Override
+    public boolean checkingIfUserExistsById(long id) {
+        Optional<User> optionalUser = userJdbc.getUserById(id);
+        return optionalUser.isPresent();
+    }
 
     @Override
     public User createUser(String surname, String name, long emailId, long petId) {
@@ -24,20 +25,18 @@ public class UserServiceImpl implements UserService {
         return new User(receivedId, surname, name, emailId, petId);
     }
 
-//    @Override
-//    public void printAllUsers() {
-//        for (User user : userJdbc.getAllUsers()) {
-//            System.out.println(user);
-//        }
-//    }
+    @Override
+    public List<User> getAllUsers() {
+        return userJdbc.getAllUsers();
+    }
 
-//    @Override
-//    public void printUserById(long id) {
-//        System.out.println(userJdbc.getUserById(id).get());
-//    }
+    @Override
+    public User getUserById(long id) {
+        return userJdbc.getUserById(id).get();
+    }
 
-//    @Override
-//    public void deleteUserById(long id) {
-//        userJdbc.deleteUserById(id);
-//    }
+    @Override
+    public void deleteUserById(long id) {
+        userJdbc.deleteUserById(id);
+    }
 }

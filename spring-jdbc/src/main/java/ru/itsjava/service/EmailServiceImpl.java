@@ -17,7 +17,17 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
+    public Email getEmailById(long id) {
+        return emailJdbc.getEmailById(id);
+    }
+
+    @Override
     public void updateEmailUserById(long id, String newEmail) {
         emailJdbc.updateEmailUserById(id, newEmail);
+    }
+
+    @Override
+    public void deleteEmailById(long id) {
+        emailJdbc.deleteEmailById(id);
     }
 }

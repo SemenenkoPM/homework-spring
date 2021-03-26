@@ -17,7 +17,17 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
+    public Pet getPetById(long id) {
+        return petJdbc.getPetById(id);
+    }
+
+    @Override
     public void updatePetUserById(long id, String name, String whatPet) {
         petJdbc.updatePetUserById(id, name, whatPet);
+    }
+
+    @Override
+    public void deletePetById(long id) {
+        petJdbc.deletePetById(id);
     }
 }

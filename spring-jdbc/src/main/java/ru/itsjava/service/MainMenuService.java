@@ -3,13 +3,15 @@ package ru.itsjava.service;
 import java.io.IOException;
 
 public interface MainMenuService {
-    void dataEntryForUserCreation() throws IOException;
+    void getDataAndPrintCreatedUser() throws IOException;
 
-//    void inputAndCheckIdForPrintUserById() throws IOException;
-//
-//    void inputAndCheckIdForUpdateEmailUserById() throws IOException;
-//
-//    void inputAndCheckIdForUpdatePetUserById() throws IOException;
-//
-//    void inputAndCheckIdForDeleteUserById() throws IOException;
+    void printAllUsers();
+
+    void getDataAndCheckIdPrintUserById() throws IOException;
+
+    void getDataAndCheckIdForUpdateEmailByUserId() throws IOException;
+
+    void getDataAndCheckIdForUpdatePetByUserId() throws IOException;
+
+    void inputAndCheckIdForDeleteUserById() throws IOException;
 }
