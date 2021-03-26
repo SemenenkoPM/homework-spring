@@ -1,0 +1,46 @@
+package ru.itsjava.mainMenu;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import ru.itsjava.service.MainMenuService;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+@Service
+@RequiredArgsConstructor
+public class MainMenuImpl implements MainMenu {
+    private final MainMenuService mainMenuService;
+
+    private final BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
+
+    @Override
+    public void printMenu() throws IOException {
+        while (true) {
+            System.out.println("выберите пункт меню \n" +
+                    "1. Создать пользователя\n" +
+                    "2. Вывести всех пользователей\n" +
+                    "3. Вывести пользователя по id\n" +
+                    "4. Изменить email пользователя\n" +
+                    "5. Изменить зверушку пользователя\n" +
+                    "6. Удалить пользователя по id");
+            String selectedMenuNumber = consoleReader.readLine();
+            if (selectedMenuNumber.equals("1")) {
+                mainMenuService.dataEntryForUserCreation();
+            } else if (selectedMenuNumber.equals("2")) {
+//                userService.printAllUsers();
+            } else if (selectedMenuNumber.equals("3")) {
+//                inputAndCheckIdForPrintUserById();
+            } else if (selectedMenuNumber.equals("4")) {
+//                inputAndCheckIdForUpdateEmailUserById();
+            } else if (selectedMenuNumber.equals("5")) {
+//                inputAndCheckIdForUpdatePetUserById();
+            } else if (selectedMenuNumber.equals("6")) {
+//                inputAndCheckIdForDeleteUserById();
+            } else {
+                System.err.println("Нет такого пункта меню, выбери существующий пункт меню");
+            }
+        }
+    }
+}

@@ -23,13 +23,12 @@ public class PetJdbcImpl implements PetJdbc {
 //    }
 
     @Override
-    public long createPet(Pet pet) {
+    public long createPet(String name, String whatPet) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         KeyHolder keyHolderPetId = new GeneratedKeyHolder();
-        parameterSource.addValue("name", pet.getName());
-        parameterSource.addValue("whatPet", pet.getWhatPet());
-        parameterSource.addValue("userId", pet.getUserId());
-        namedParameterJdbcOperations.update("insert into pet (name, what_pet, users_id) values (:name, :whatPet, :userId)", parameterSource, keyHolderPetId);
+        parameterSource.addValue("name", name);
+        parameterSource.addValue("whatPet", whatPet);
+        namedParameterJdbcOperations.update("insert into pet (name, what_pet) values (:name, :whatPet)", parameterSource, keyHolderPetId);
         return (long) keyHolderPetId.getKey();
     }
 

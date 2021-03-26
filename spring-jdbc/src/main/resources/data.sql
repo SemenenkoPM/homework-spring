@@ -1,19 +1,11 @@
-INSERT INTO users (surname, name)
-VALUES ('PETROV', 'PETR');
+INSERT INTO email (email)
+VALUES ('43243@ff.com'),
+       ('342224@.com');
 
-INSERT INTO pet (what_pet, name, users_id)
-VALUES ('Крокодил', 'Гена', 1);
+INSERT INTO pet (what_pet, name)
+VALUES ('Крокодил', 'Гена'),
+       ('Неизвестный науке зверь', 'Чебурашка');
 
-
-INSERT INTO email (email, users_id)
-VALUES ('43243@ff.com', 1);
-
-INSERT INTO users (surname, name)
-VALUES ('Ivanov', 'Ivan');
-
-INSERT INTO pet (what_pet, name, users_id)
-VALUES ('Неизвестный науке зверь', 'Чебурашка', 2);
-
-
-INSERT INTO email (email, users_id)
-VALUES ('342224@.com', 2);
+INSERT INTO users (surname, name, email_id, pet_id)
+VALUES ('PETROV', 'PETR', 1, 1),
+       ('Ivanov', 'Ivan', 2, 2);

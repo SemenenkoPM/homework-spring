@@ -16,12 +16,11 @@ public class EmailJdbcImpl implements EmailJdbc {
     private final NamedParameterJdbcOperations namedParameterJdbcOperations;
 
     @Override
-    public long createEmail(Email email) {
+    public long createEmail(String email) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         KeyHolder keyHolderEmailId = new GeneratedKeyHolder();
-        parameterSource.addValue("email", email.getEmail());
-        parameterSource.addValue("userId", email.getUserId());
-        namedParameterJdbcOperations.update("insert into email(email, users_id) values(:email, :userId)", parameterSource, keyHolderEmailId);
+        parameterSource.addValue("email", email);
+        namedParameterJdbcOperations.update("insert into email(email) values(:email)", parameterSource, keyHolderEmailId);
         return (long) keyHolderEmailId.getKey();
     }
 

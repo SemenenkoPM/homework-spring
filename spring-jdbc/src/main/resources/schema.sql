@@ -4,25 +4,25 @@ CREATE TABLE users
 (
     id      BIGINT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     surname VARCHAR(256),
-    name    VARCHAR(256)
+    name    VARCHAR(256),
+    email_id BIGINT,
+    pet_id BIGINT
 );
 
 CREATE TABLE email
 (
     id       BIGINT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    email    VARCHAR(256),
-    users_id BIGINT
+    email    VARCHAR(256)
 );
 
 CREATE TABLE pet
 (
     id       BIGINT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     what_pet VARCHAR(256),
-    name     VARCHAR(256),
-    users_id BIGINT
+    name     VARCHAR(256)
 );
 
-ALTER TABLE email
-    ADD FOREIGN KEY (users_id) REFERENCES users (id) on delete cascade;
-ALTER TABLE pet
-    ADD FOREIGN KEY (users_id) REFERENCES users (id) on delete cascade;
+ALTER TABLE users
+    ADD FOREIGN KEY (email_id) REFERENCES email (id) on delete cascade;
+ALTER TABLE users
+    ADD FOREIGN KEY (pet_id) REFERENCES pet (id) on delete cascade;
