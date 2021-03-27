@@ -7,9 +7,12 @@ import java.util.List;
 public interface UserRepository {
     User saveUser(User user);
 
+    List<User> getAllUsers();
+
     boolean checkingIfUserExistsWithThisId(long id);
 
     User getUserById(long id);
 
-    List<User> getAllUsers();
+    void deleteUserById(User user);
+
 }

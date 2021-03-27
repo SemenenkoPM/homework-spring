@@ -11,6 +11,8 @@ public interface UserService {
 
     boolean checkingIfUserExistsWithThisId(long id);
 
-    void printUserById(long id);
+    User getUserById(long id);
+
+    void deleteUserById(long id);
 
 }

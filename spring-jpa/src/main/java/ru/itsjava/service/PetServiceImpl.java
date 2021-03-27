@@ -14,4 +14,9 @@ private final PetRepository petRepository;
     public Pet createPet(Pet pet) {
         return petRepository.savePet(pet);
     }
+
+    @Override
+    public void updatePetUserById(long id, String name, String whatPet) {
+        petRepository.updatePetUserById(new Pet(id, name, whatPet));
+    }
 }

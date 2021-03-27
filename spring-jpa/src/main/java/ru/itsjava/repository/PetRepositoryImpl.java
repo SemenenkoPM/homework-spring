@@ -22,4 +22,9 @@ public class PetRepositoryImpl implements PetRepository{
         }
         return entityManager.merge(pet);
     }
+
+    @Override
+    public void updatePetUserById(Pet pet) {
+        entityManager.merge(pet);
+    }
 }

@@ -27,6 +27,13 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public List<User> getAllUsers() {
+        TypedQuery<User> query = entityManager.createQuery("select u from User u", User.class);
+        List<User> result = query.getResultList();
+        return result;
+    }
+
+    @Override
     public boolean checkingIfUserExistsWithThisId(long id) {
         Optional<User> user = Optional.ofNullable(entityManager.find(User.class, id));
         if(user.isPresent()){
@@ -41,10 +48,9 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public List<User> getAllUsers() {
-        TypedQuery<User> query = entityManager.createQuery("select u from User u", User.class);
-        List<User> result = query.getResultList();
-        return result;
+    public void deleteUserById(User user) {
+        entityManager.remove(user);
     }
+
 
 }
