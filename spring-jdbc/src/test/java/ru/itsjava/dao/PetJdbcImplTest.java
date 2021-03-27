@@ -6,9 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
 import org.springframework.context.annotation.Import;
-import ru.itsjava.domain.Email;
 import ru.itsjava.domain.Pet;
-import ru.itsjava.domain.User;
 
 @JdbcTest
 @Import(PetJdbcImpl.class)
