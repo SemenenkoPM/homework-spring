@@ -23,11 +23,11 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL) // как работает lasy, не вытащить пользователя при лази
     @JoinColumn(name = "email_id", nullable = false)
     private Email email;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "pet_id", nullable = false)
     private Pet pet;
 }

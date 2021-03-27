@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import ru.itsjava.domain.Email;
 import ru.itsjava.domain.Pet;
 import ru.itsjava.domain.User;
+import ru.itsjava.repository.UserRepository;
 import ru.itsjava.service.MainMenu;
 import ru.itsjava.service.UserService;
 
@@ -24,5 +25,7 @@ public class MyApplication {
 //       userService.createUser(new User(0L, "testSurname", "name"));
 //         userService.createUser(new User(1L, "testSurname", "name", new Email(0L, "inputEmail" ), new Pet(0L, "petName", "whatPet")));
 //        mainMenu.printMenu();
+        UserRepository userRepository = context.getBean(UserRepository.class);
+userRepository.getAllUsers();
     }
 }

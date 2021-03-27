@@ -61,13 +61,8 @@ public class MainMenuImpl implements MainMenu {
         String petName = consoleReader.readLine();
         System.out.println("Какой зверушкой обладает пользователь");
         String whatPet = consoleReader.readLine();
-        User user = new User(0L, surname, name);
-        User createdUser = userService.createUser(user);
-        Email email = new Email(user.getId(), inputEmail, user); // если ставить ид 0 то падаем
-        Email createdEmail = emailService.createEmail(email);
-        Pet pet = new Pet(user.getId(), petName, whatPet, user);// можно ли создать пет без юзера
-        Pet createdPet = petService.createPet(pet);// как сделать чтбы id на уровне базы присваивался у email, pet
-        System.out.println("Создали нового пользователя: " + createdUser + createdEmail + createdPet);
+        User createdUser = userService.createUser(new User(0L, surname, name , new Email(0L, inputEmail), new Pet(0L, petName, whatPet)));
+        System.out.println("Создали нового пользователя: " + createdUser);
     }
 
     @Override
