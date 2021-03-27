@@ -18,11 +18,4 @@ public class Pet {
     private String name;
     @Column(name = "what_pet")
     private String whatPet;
-
-//    @OneToOne(fetch = FetchType.EAGER)
-//    @MapsId
-//    private User user;
-
-
-
 }

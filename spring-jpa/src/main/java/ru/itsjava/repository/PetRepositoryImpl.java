@@ -1,6 +1,5 @@
 package ru.itsjava.repository;
 
-import jdk.jfr.Registered;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ru.itsjava.domain.Pet;
@@ -10,7 +9,7 @@ import javax.persistence.PersistenceContext;
 
 @Transactional
 @Repository
-public class PetRepositoryImpl implements PetRepository{
+public class PetRepositoryImpl implements PetRepository {
     @PersistenceContext
     private EntityManager entityManager;
 

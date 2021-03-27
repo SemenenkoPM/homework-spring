@@ -36,7 +36,7 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public boolean checkingIfUserExistsWithThisId(long id) {
         Optional<User> user = Optional.ofNullable(entityManager.find(User.class, id));
-        if(user.isPresent()){
+        if (user.isPresent()) {
             return true;
         }
         return false;
@@ -51,6 +51,4 @@ public class UserRepositoryImpl implements UserRepository {
     public void deleteUserById(User user) {
         entityManager.remove(user);
     }
-
-
 }

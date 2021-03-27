@@ -7,8 +7,8 @@ import ru.itsjava.repository.PetRepository;
 
 @Service
 @RequiredArgsConstructor
-public class PetServiceImpl implements PetService{
-private final PetRepository petRepository;
+public class PetServiceImpl implements PetService {
+    private final PetRepository petRepository;
 
     @Override
     public Pet createPet(Pet pet) {

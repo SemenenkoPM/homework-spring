@@ -31,7 +31,7 @@ public class MainMenuServiceImpl implements MainMenuService {
         String petName = consoleReader.readLine();
         System.out.println("Какой зверушкой обладает пользователь");
         String whatPet = consoleReader.readLine();
-        User createdUser = userService.createUser(new User(0L, surname, name , new Email(0L, inputEmail), new Pet(0L, petName, whatPet)));
+        User createdUser = userService.createUser(new User(0L, surname, name, new Email(0L, inputEmail), new Pet(0L, petName, whatPet)));
         System.out.println("Создали нового пользователя: " + createdUser);
     }
 

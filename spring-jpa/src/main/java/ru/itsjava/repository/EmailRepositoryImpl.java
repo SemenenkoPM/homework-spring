@@ -6,11 +6,13 @@ import ru.itsjava.domain.Email;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 @Transactional
 @Repository
-public class EmailRepositoryImpl implements EmailRepository{
+public class EmailRepositoryImpl implements EmailRepository {
     @PersistenceContext
     private EntityManager entityManager;
+
     @Override
     public Email saveEmail(Email email) {
         if (email.getId() == 0L) {

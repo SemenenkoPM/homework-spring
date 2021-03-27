@@ -39,6 +39,4 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.getUserById(id);
         userRepository.deleteUserById(user);
     }
-
-
 }
