@@ -12,15 +12,16 @@ import javax.persistence.*;
 @Entity
 public class Pet {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String name;
     @Column(name = "what_pet")
     private String whatPet;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @MapsId
-    private User user;
+//    @OneToOne(fetch = FetchType.EAGER)
+//    @MapsId
+//    private User user;
 
 
 

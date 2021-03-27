@@ -1,8 +1,9 @@
+insert into pet (name, what_pet)
+values ('Че', 'Зверь');
 
-insert into user (surname, name)
-values ('Petrov', 'Petr');
-insert into pet (user_id, name, what_pet)
-values (1, 'Че', 'Зверь');
-insert into email(user_id, email)
-values (1, '123@gmail.com');
+insert into email(email)
+values ('123@gmail.com');
+
+insert into user (surname, name, email_id, pet_id)
+values ('Petrov', 'Petr', 1, 1);
 

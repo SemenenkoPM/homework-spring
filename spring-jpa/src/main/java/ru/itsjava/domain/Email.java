@@ -10,7 +10,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Data
 @Entity
-
 public class Email {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,9 +17,9 @@ public class Email {
 
     private String email;
 
-    @OneToOne(fetch = FetchType.EAGER) // при ленивой загрузке падает почему
-    @MapsId
-    private User user;
+//    @OneToOne(fetch = FetchType.EAGER) // при ленивой загрузке падает почему
+//    @MapsId
+//    private User user;
 
 
 }

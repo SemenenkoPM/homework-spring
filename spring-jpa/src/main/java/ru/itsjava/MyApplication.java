@@ -17,7 +17,7 @@ public class MyApplication {
     public static void main(String[] args) throws SQLException, IOException {
         var context = SpringApplication.run(MyApplication.class);
 //        MainMenu mainMenu = context.getBean(MainMenu.class);
-        UserService userService = context.getBean(UserService.class);
+//        UserService userService = context.getBean(UserService.class);
 //        System.out.println("userService.checkingIfUserExistsWithThisId(1L) = " + userService.checkingIfUserExistsWithThisId(2L));
 
         Console.main();
