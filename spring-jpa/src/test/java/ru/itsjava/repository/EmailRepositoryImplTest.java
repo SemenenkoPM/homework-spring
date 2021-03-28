@@ -11,13 +11,13 @@ import ru.itsjava.domain.Email;
 @DataJpaTest
 @Import(EmailRepositoryImpl.class)
 @DisplayName("Класс EmailRepositoryImpl должен корректно: ")
-public class EmailRepositoryImpl {
+public class EmailRepositoryImplTest {
     @Autowired
     private EmailRepository emailRepository;
 
-    @DisplayName("сохранять email")
+    @DisplayName("создавать email")
     @Test
-    public void shouldHaveCorrectSaveEmail(){
+    public void shouldHaveCorrectCreateEmail(){
         Email testEmail = new Email(0L, "testEmail3");
         Email receivedEmailFromDB = emailRepository.saveEmail(testEmail);
         testEmail.setId(receivedEmailFromDB.getId());

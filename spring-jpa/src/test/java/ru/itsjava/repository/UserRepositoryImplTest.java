@@ -35,15 +35,15 @@ public class UserRepositoryImplTest {
     @DisplayName("вызвращать всех пользователей")
     @Test
     public void shouldHaveCorrectGetAllUsers() {
-        List<User> userList = List.of(userRepository.getUserById(1), userRepository.getUserById(2));
+        List<User> userList = List.of(userRepository.getUserById(1L), userRepository.getUserById(2L));
         Assertions.assertEquals(userList, userRepository.getAllUsers());
     }
 
     @DisplayName("проверять, существует ли пользователь по id")
     @Test
     public void shouldHaveCorrectCheckingIfUserExistsWithThisId() {
-        Assertions.assertTrue(userRepository.checkingIfUserExistsWithThisId(1));
-        Assertions.assertFalse(userRepository.checkingIfUserExistsWithThisId(3));
+        Assertions.assertTrue(userRepository.checkingIfUserExistsWithThisId(1L));
+        Assertions.assertFalse(userRepository.checkingIfUserExistsWithThisId(3L));
     }
 
     @DisplayName("корректно возвращать пользователя по id")
@@ -59,7 +59,7 @@ public class UserRepositoryImplTest {
     @DisplayName("удалять пользователя по id")
     @Test
     public void shouldHaveCorrectDeleteUserById() {
-        userRepository.deleteUserById(userRepository.getUserById(1));
-        Assertions.assertFalse(userRepository.checkingIfUserExistsWithThisId(1));
+        userRepository.deleteUserById(userRepository.getUserById(1L));
+        Assertions.assertFalse(userRepository.checkingIfUserExistsWithThisId(1L));
     }
 }
