@@ -2,7 +2,6 @@ package ru.itsjava.repository;
 
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 import ru.itsjava.domain.User;
 
 import javax.persistence.EntityManager;
@@ -11,7 +10,6 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
 
-@Transactional
 @Repository
 public class UserRepositoryImpl implements UserRepository {
     @PersistenceContext

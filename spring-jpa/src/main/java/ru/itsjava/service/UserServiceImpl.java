@@ -15,20 +15,25 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
+    @Transactional
     public User createUser(User user) {
         return userRepository.saveUser(user);
     }
 
+    @Override
+    @Transactional(readOnly = true)
     public List<User> getAllUsers() {
         return userRepository.getAllUsers();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public boolean checkingIfUserExistsWithThisId(long id) {
         return userRepository.checkingIfUserExistsWithThisId(id);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public User getUserById(long id) {
         return userRepository.getUserById(id);
     }
