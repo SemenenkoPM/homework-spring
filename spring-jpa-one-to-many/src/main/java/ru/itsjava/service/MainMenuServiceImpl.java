@@ -2,6 +2,7 @@ package ru.itsjava.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.itsjava.domain.Community;
 import ru.itsjava.domain.Email;
 import ru.itsjava.domain.Pet;
 import ru.itsjava.domain.User;
@@ -17,6 +18,7 @@ public class MainMenuServiceImpl implements MainMenuService {
     private final UserService userService;
     private final EmailService emailService;
     private final PetService petService;
+//    private final CommunityService communityService;
 
     private final BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -26,13 +28,20 @@ public class MainMenuServiceImpl implements MainMenuService {
         String surname = consoleReader.readLine();
         System.out.println("Введите имя пользователя");
         String name = consoleReader.readLine();
+        System.out.println("если пользователь состоит в сообществе, введите его название, если нет, нажмите Enter");
+        String community = consoleReader.readLine();
         System.out.println("Введите почту пользователя");
         String inputEmail = consoleReader.readLine();
         System.out.println("Как зовут зверушку");
         String petName = consoleReader.readLine();
         System.out.println("Какой зверушкой обладает пользователь");
         String whatPet = consoleReader.readLine();
-        User createdUser = userService.createUser(new User(0L, surname, name, new Email(0L, inputEmail)));
+        User createdUser;
+        if (!(community == null)){
+            createdUser = userService.createUser(new User(0L, surname, name, new Email(0L, inputEmail), new Community(0L, community)));
+        } else {
+            createdUser = userService.createUser(new User(0L, surname, name, new Email(0L, inputEmail)));
+        }
         petService.createPet(new Pet(0L, petName, whatPet, createdUser.getId()));
         System.out.println("Создали нового пользователя: " + userService.getUserById(createdUser.getId()));
     }

@@ -12,6 +12,13 @@ import java.util.List;
 @Data
 @Entity
 public class User {
+    public User(long id, String surname, String name, Email email, Community community) {
+        this.id = id;
+        this.surname = surname;
+        this.name = name;
+        this.email = email;
+        this.community = community;
+    }
     public User(long id, String surname, String name, Email email) {
         this.id = id;
         this.surname = surname;
@@ -36,5 +43,9 @@ public class User {
     @OneToMany(targetEntity = Pet.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private List<Pet> pets;
+
+    @ManyToOne(targetEntity = Community.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "community_id")
+    private Community community;
 
 }
