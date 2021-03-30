@@ -16,6 +16,7 @@
         <module name="coffee-java-based-configuration" />
         <module name="spring-boot" />
         <module name="from-video-spring-ripper" />
+        <module name="spring-jpa-one-to-many" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -29,6 +30,7 @@
       <module name="spring-boot-with-conditional" target="15" />
       <module name="spring-jdbc" target="15" />
       <module name="spring-jpa" target="15" />
+      <module name="spring-jpa-one-to-many" target="15" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -42,6 +44,7 @@
       <module name="spring-boot-with-conditional" options="-parameters" />
       <module name="spring-jdbc" options="-parameters" />
       <module name="spring-jpa" options="-parameters" />
+      <module name="spring-jpa-one-to-many" options="-parameters" />
     </option>
   </component>
 </project>
