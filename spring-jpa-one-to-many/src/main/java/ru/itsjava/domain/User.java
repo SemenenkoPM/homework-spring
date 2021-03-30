@@ -7,11 +7,13 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.List;
 
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Data
 @Entity
 public class User {
+    public User() {
+
+    }
     public User(long id, String surname, String name, Email email, Community community) {
         this.id = id;
         this.surname = surname;
