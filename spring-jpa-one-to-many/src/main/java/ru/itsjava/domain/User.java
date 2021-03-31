@@ -46,7 +46,7 @@ public class User {
     @JoinColumn(name = "user_id")
     private List<Pet> pets;
 
-    @ManyToOne(targetEntity = Community.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = Community.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "community_id")
     private Community community;
 

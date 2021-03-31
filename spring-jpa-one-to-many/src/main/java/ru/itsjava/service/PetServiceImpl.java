@@ -6,6 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.itsjava.domain.Pet;
 import ru.itsjava.repository.PetRepository;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class PetServiceImpl implements PetService {
@@ -17,9 +19,14 @@ public class PetServiceImpl implements PetService {
         return petRepository.savePet(pet);
     }
 
-//    @Override
-//    @Transactional
-//    public void updatePetUserById(long id, String name, String whatPet) {
-//        petRepository.updatePetUserById(new Pet(id, name, whatPet));
-//    }
+    @Transactional(readOnly = true)
+    public List<Pet> getPetByUserId(long userId) {
+        return petRepository.getPetByUserId(userId);
+    }
+
+    @Override
+    @Transactional
+    public void deletePetById(long id) {
+        petRepository.deletePetById(petRepository.getPetById(id));
+    }
 }

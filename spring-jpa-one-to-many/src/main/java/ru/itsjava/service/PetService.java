@@ -2,8 +2,12 @@ package ru.itsjava.service;
 
 import ru.itsjava.domain.Pet;
 
+import java.util.List;
+
 public interface PetService {
     Pet createPet(Pet pet);
 
-//    void updatePetUserById(long id, String name, String whatPet);
+    List<Pet> getPetByUserId(long userId);
+
+    void deletePetById(long id);
 }

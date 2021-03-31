@@ -13,7 +13,9 @@ public interface MainMenuService {
 
     void getDataAndCheckIdForUpdateEmailByUserId() throws IOException;
 
-//    void getDataAndCheckIdForUpdatePetByUserId() throws IOException;
+    void getDataAndCheckIdForCreateNewPetByUserId() throws IOException;
+
+    void getDataAndCheckIdForDeletePetByUserId();
 
     void inputAndCheckIdForDeleteUserById() throws IOException;
 }

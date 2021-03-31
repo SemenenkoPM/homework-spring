@@ -23,8 +23,9 @@ public class MainMenuImpl implements MainMenu {
                     "2. Вывести всех пользователей\n" +
                     "3. Вывести пользователя по id\n" +
                     "4. Изменить email пользователя\n" +
-                    "5. Изменить зверушку пользователя\n" +
-                    "6. Удалить пользователя по id");
+                    "5. Добавить новую зверушку пользователю по id\n" +
+                    "6. Удалить зверушку по id пользователя\n" +
+                    "7. Удалить пользователя по id");
             String selectedMenuNumber = consoleReader.readLine();
             if (selectedMenuNumber.equals("1")) {
                 mainMenuService.getDataAndPrintCreatedUser();
@@ -35,10 +36,12 @@ public class MainMenuImpl implements MainMenu {
             } else if (selectedMenuNumber.equals("4")) {
                 mainMenuService.getDataAndCheckIdForUpdateEmailByUserId();
             } else if (selectedMenuNumber.equals("5")) {
-//                mainMenuService.getDataAndCheckIdForUpdatePetByUserId();
+                mainMenuService.getDataAndCheckIdForCreateNewPetByUserId();
             } else if (selectedMenuNumber.equals("6")) {
+                mainMenuService.getDataAndCheckIdForDeletePetByUserId();
+            } else if (selectedMenuNumber.equals("7")) {
                 mainMenuService.inputAndCheckIdForDeleteUserById();
-            } else {
+            } else{
                 System.err.println("Нет такого пункта меню, выбери существующий пункт меню");
             }
         }
