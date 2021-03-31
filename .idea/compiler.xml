@@ -13,6 +13,7 @@
         <module name="coffee-aop" />
         <module name="spring-jdbc" />
         <module name="coffee-xml-configuration" />
+        <module name="spring-data" />
         <module name="coffee-java-based-configuration" />
         <module name="spring-boot" />
         <module name="from-video-spring-ripper" />
@@ -28,6 +29,7 @@
       <module name="homework-spring" target="15" />
       <module name="spring-boot" target="15" />
       <module name="spring-boot-with-conditional" target="15" />
+      <module name="spring-data" target="15" />
       <module name="spring-jdbc" target="15" />
       <module name="spring-jpa" target="15" />
       <module name="spring-jpa-one-to-many" target="15" />
@@ -42,6 +44,7 @@
       <module name="from-video-spring-ripper" options="-parameters" />
       <module name="spring-boot" options="-parameters" />
       <module name="spring-boot-with-conditional" options="-parameters" />
+      <module name="spring-data" options="-parameters" />
       <module name="spring-jdbc" options="-parameters" />
       <module name="spring-jpa" options="-parameters" />
       <module name="spring-jpa-one-to-many" options="-parameters" />

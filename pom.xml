@@ -26,6 +26,7 @@
         <module>spring-jdbc</module>
         <module>spring-jpa</module>
         <module>spring-jpa-one-to-many</module>
+        <module>spring-data</module>
     </modules>
 
     <properties>

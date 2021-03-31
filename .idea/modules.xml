@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/homework-spring.iml" filepath="$PROJECT_DIR$/homework-spring.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-boot/spring-boot.iml" filepath="$PROJECT_DIR$/spring-boot/spring-boot.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-boot-with-conditional/spring-boot-with-conditional.iml" filepath="$PROJECT_DIR$/spring-boot-with-conditional/spring-boot-with-conditional.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-data/spring-data.iml" filepath="$PROJECT_DIR$/spring-data/spring-data.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-jdbc/spring-jdbc.iml" filepath="$PROJECT_DIR$/spring-jdbc/spring-jdbc.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-jpa/spring-jpa.iml" filepath="$PROJECT_DIR$/spring-jpa/spring-jpa.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-jpa-one-to-many/spring-jpa-one-to-many.iml" filepath="$PROJECT_DIR$/spring-jpa-one-to-many/spring-jpa-one-to-many.iml" />
