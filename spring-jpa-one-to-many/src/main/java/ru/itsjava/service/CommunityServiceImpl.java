@@ -8,7 +8,7 @@ import ru.itsjava.repository.CommunityRepository;
 
 @Service
 @RequiredArgsConstructor
-public class CommunityServiceImpl implements CommunityService{
+public class CommunityServiceImpl implements CommunityService {
     private final CommunityRepository communityRepository;
 
     @Override

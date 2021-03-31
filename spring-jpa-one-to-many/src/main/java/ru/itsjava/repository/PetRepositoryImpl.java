@@ -1,9 +1,7 @@
 package ru.itsjava.repository;
 
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import ru.itsjava.domain.Pet;
-import ru.itsjava.domain.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

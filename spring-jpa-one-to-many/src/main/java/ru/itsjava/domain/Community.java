@@ -21,6 +21,4 @@ public class Community {
     private String name;
 
 
-
-
 }

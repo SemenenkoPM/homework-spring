@@ -14,6 +14,7 @@ public class User {
     public User() {
 
     }
+
     public User(long id, String surname, String name, Email email, Community community) {
         this.id = id;
         this.surname = surname;
@@ -21,12 +22,14 @@ public class User {
         this.email = email;
         this.community = community;
     }
+
     public User(long id, String surname, String name, Email email) {
         this.id = id;
         this.surname = surname;
         this.name = name;
         this.email = email;
     }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

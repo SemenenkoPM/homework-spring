@@ -37,7 +37,7 @@ public class MainMenuServiceImpl implements MainMenuService {
         System.out.println("Какой зверушкой обладает пользователь");
         String whatPet = consoleReader.readLine();
         User createdUser;
-        if (!(community.equals(""))){
+        if (!(community.equals(""))) {
             createdUser = userService.createUser(new User(0L, surname, name, new Email(0L, inputEmail), new Community(0L, community)));
         } else {
             createdUser = userService.createUser(new User(0L, surname, name, new Email(0L, inputEmail)));
@@ -109,8 +109,8 @@ public class MainMenuServiceImpl implements MainMenuService {
             long id = Long.parseLong(consoleReader.readLine());
             if (userService.checkingIfUserExistsWithThisId(id)) {
                 System.out.println("У пользователя сейчас такие зверушки: ");
-                List<Pet> petListByUserId= petService.getPetByUserId(id);
-                for(Pet pet: petListByUserId){
+                List<Pet> petListByUserId = petService.getPetByUserId(id);
+                for (Pet pet : petListByUserId) {
                     System.out.println(pet);
                 }
                 System.out.println("Введите id зверушки которую нужно удалить");

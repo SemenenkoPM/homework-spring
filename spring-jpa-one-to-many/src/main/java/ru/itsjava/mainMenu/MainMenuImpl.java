@@ -41,7 +41,7 @@ public class MainMenuImpl implements MainMenu {
                 mainMenuService.getDataAndCheckIdForDeletePetByUserId();
             } else if (selectedMenuNumber.equals("7")) {
                 mainMenuService.inputAndCheckIdForDeleteUserById();
-            } else{
+            } else {
                 System.err.println("Нет такого пункта меню, выбери существующий пункт меню");
             }
         }

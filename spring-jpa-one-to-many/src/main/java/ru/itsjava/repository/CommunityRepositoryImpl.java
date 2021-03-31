@@ -7,12 +7,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Repository
-public class CommunityRepositoryImpl implements CommunityRepository{
+public class CommunityRepositoryImpl implements CommunityRepository {
     @PersistenceContext
     EntityManager entityManager;
+
     @Override
     public Community saveCommunity(Community community) {
-        if(community.getId() == 0){
+        if (community.getId() == 0) {
             entityManager.persist(community);
             return community;
         }
