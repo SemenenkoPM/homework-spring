@@ -18,7 +18,7 @@ public class MainMenuServiceImpl implements MainMenuService {
     private final UserService userService;
     private final EmailService emailService;
     private final PetService petService;
-//    private final CommunityService communityService;
+    private final CommunityService communityService;
 
     private final BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -38,7 +38,8 @@ public class MainMenuServiceImpl implements MainMenuService {
         String whatPet = consoleReader.readLine();
         User createdUser;
         if (!(community.equals(""))) {
-            createdUser = userService.createUser(new User(0L, surname, name, new Email(0L, inputEmail), new Community(0L, community)));
+            Community createdCommunity = communityService.createCommunity(community);
+            createdUser = userService.createUser(new User(0L, surname, name, new Email(0L, inputEmail), createdCommunity));
         } else {
             createdUser = userService.createUser(new User(0L, surname, name, new Email(0L, inputEmail)));
         }
