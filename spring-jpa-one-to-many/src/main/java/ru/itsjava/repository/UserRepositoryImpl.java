@@ -27,17 +27,13 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public List<User> getAllUsers() {
         TypedQuery<User> query = entityManager.createQuery("select u from User u", User.class);
-        List<User> result = query.getResultList();
-        return result;
+        return query.getResultList();
     }
 
     @Override
     public boolean checkingIfUserExistsWithThisId(long id) {
         Optional<User> user = Optional.ofNullable(entityManager.find(User.class, id));
-        if (user.isPresent()) {
-            return true;
-        }
-        return false;
+        return user.isPresent();
     }
 
     @Override

@@ -31,8 +31,7 @@ public class PetRepositoryImpl implements PetRepository {
     public List<Pet> getPetByUserId(long userId) {
         TypedQuery<Pet> query = entityManager.createQuery("select p from Pet p where user_id = :userId", Pet.class);
         query.setParameter("userId", userId);
-        List<Pet> result = query.getResultList();
-        return result;
+        return query.getResultList();
     }
 
     @Override

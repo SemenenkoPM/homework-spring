@@ -97,7 +97,9 @@ public class MainMenuServiceImpl implements MainMenuService {
                 System.out.println("Введите какая теперь зверушка у пользователя");
                 String whatPet = consoleReader.readLine();
                 petService.createPet(new Pet(0L, name, whatPet, id));
-            } else System.err.println("Нет пользователя с таким id, так что зверушку мы не поменяем никак");
+            } else {
+                System.err.println("Нет пользователя с таким id, так что зверушку мы не поменяем никак");
+            }
         } catch (NumberFormatException numberFormatException) {
             System.err.println("Некорректно введен Id пользователя, числа вводи!");
         }
@@ -117,7 +119,9 @@ public class MainMenuServiceImpl implements MainMenuService {
                 System.out.println("Введите id зверушки которую нужно удалить");
                 long idPetForDelete = Long.parseLong(consoleReader.readLine());
                 petService.deletePetById(idPetForDelete);
-            } else System.err.println("Нет пользователя с таким id, так что зверушку мы не поменяем никак");
+            } else {
+                System.err.println("Нет пользователя с таким id, так что зверушку мы не поменяем никак");
+            }
         } catch (NumberFormatException | IOException numberFormatException) {
             System.err.println("Некорректно введен Id пользователя, числа вводи!");
         }
@@ -130,7 +134,9 @@ public class MainMenuServiceImpl implements MainMenuService {
             long id = Long.parseLong(consoleReader.readLine());
             if (userService.checkingIfUserExistsWithThisId(id)) {
                 userService.deleteUserById(id);
-            } else System.err.println("Нет пользователя с таким id, так что некого удалять");
+            } else {
+                System.err.println("Нет пользователя с таким id, так что некого удалять");
+            }
         } catch (NumberFormatException numberFormatException) {
             System.err.println("Некорректно введен Id пользователя, числа вводи!");
         }
