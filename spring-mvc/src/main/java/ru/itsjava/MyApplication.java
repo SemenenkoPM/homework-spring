@@ -13,7 +13,7 @@ public class MyApplication {
     public static void main(String[] args) throws SQLException, IOException {
         var context = SpringApplication.run(MyApplication.class);
         MainMenu mainMenu = context.getBean(MainMenu.class);
-        Console.main();
-        mainMenu.printMenu();
+//        Console.main();
+//        mainMenu.printMenu();
     }
 }
