@@ -28,9 +28,24 @@ public class UsersController {
 //        model.addAttribute("user", userService.getUserById(id));
 //        return "user/inputUserId";
 //    }
-    @GetMapping("/printUserById")
-    public String printUserById(@RequestParam("id") long id, Model model){
-        model.addAttribute("user", userService.getUserById(id));
+
+    // метод работает
+//    @GetMapping("/printUserById")
+//    public String printUserById(@RequestParam("id") long id, Model model){
+//        model.addAttribute("user", userService.getUserById(id));
+//        return "/user/printUserById";
+//    }
+
+        @GetMapping("/inputUserId")
+    public String inputUserId() {
+        return "user/inputUserId";
+    }
+
+
+    @GetMapping("/{id}/printUserById")
+    public String printUserById(@PathVariable("id") String id, Model model){
+        model.addAttribute("user", userService.getUserById(Long.parseLong(id)));
         return "/user/printUserById";
     }
+
 }
