@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Input User Id</title>
+</head>
+<body>
+
+    <h1>Введите Id пользователя:</h1>
+<form method="post" action="/user/printUserById">
+    <label for="id">id</label>
+    <input id="id" type="text"/>
+<br>
+    <input type="submit" value="вывести пользователя"/>
+</form>
+
+<!--<div class="row">-->
+<!--    <label for="id-input">ID:</label>-->
+<!--    <input id="id-input" name="id" type="text" readonly="readonly" th:value="${userDto.id}" value="1"/>-->
+<!--</div>-->
+
+<!--<div class="row">-->
+<!--    <button type="submit">Save</button>-->
+<!--</div>-->
+<!--<p th:text="${user}"></p>-->
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>PrintUserById</title>
+    <style type="text/css">
+        body {
+            padding: 50px;
+        }
+
+        .users td {
+            border: 1px solid #000000;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+<h1>User:</h1>
+
+<table class="users">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Surname</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Pets</th>
+        <th>Community</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${user}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.surname}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.pets}"></td>
+        <td th:text="${user.community}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<h3><a href="/">Для возврата в основное меню нажмите сюда</a></h3>
+</body>
+</html>
