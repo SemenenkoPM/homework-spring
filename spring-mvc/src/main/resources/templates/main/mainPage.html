@@ -10,6 +10,8 @@
 <br>
 <a href="/printAllUsers">Вывести информацию по всем пользователям нажми сюда</a>
 <br>
+<a href="/formForCreateUser">Создать нового пользователя нажми сюда</a>
+<br>
 <a>Нажмите на пользователя для отображения информации по нему</a>
 <div th:each="user : ${users}">
 <a th:href="@{/printUserById/{id}(id=${user.getId()})}" th:text="${user.getName()}"></a>

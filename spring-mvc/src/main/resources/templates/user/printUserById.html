@@ -24,6 +24,7 @@
         <th>Surname</th>
         <th>Name</th>
         <th>Email</th>
+        <th></th>
         <th>Pets</th>
         <th>Community</th>
     </tr>
@@ -34,6 +35,9 @@
         <td th:text="${user.surname}"></td>
         <td th:text="${user.name}"></td>
         <td th:text="${user.email}"></td>
+        <td>
+            <a th:href="@{/newEmail/{id}(id=${user.email.getId()})}" href="/newEmail">Edit email</a>
+        </td>
         <td th:text="${user.pets}"></td>
         <td th:text="${user.community}"></td>
     </tr>

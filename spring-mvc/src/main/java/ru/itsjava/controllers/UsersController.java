@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.itsjava.domain.User;
 import ru.itsjava.service.UserService;
 
 @Controller
@@ -20,7 +21,7 @@ public class UsersController {
     @GetMapping( "/printAllUsers")
     public String getUserList(Model model) {
         model.addAttribute("users", userService.getAllUsers());
-        return "/user/printAllUsers";
+        return "user/printAllUsers";
     }
 
     @GetMapping("/printUserById/{id}")
@@ -33,6 +34,10 @@ public class UsersController {
     public String deleteUserById(@PathVariable("id") long id){
         userService.deleteUserById(id);
         return "redirect:/";
+    }
+
+    public String createUser(){
+return null;
     }
 
     // метод работает
