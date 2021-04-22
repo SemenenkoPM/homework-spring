@@ -29,6 +29,12 @@ public class UsersController {
         return "user/printUserById";
     }
 
+    @GetMapping("/deleteUserById/{id}")
+    public String deleteUserById(@PathVariable("id") long id){
+        userService.deleteUserById(id);
+        return "redirect:/";
+    }
+
     // метод работает
 //    @GetMapping("/printUserById")
 //    public String printUserById(@RequestParam("id") long id, Model model){
