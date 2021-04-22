@@ -11,6 +11,13 @@ import ru.itsjava.repository.EmailRepository;
 public class EmailServiceImpl implements EmailService {
     private final EmailRepository emailRepository;
 
+
+    @Override
+    @Transactional(readOnly = true)
+    public Email getEmailById(long id) {
+        return emailRepository.findById(id).get();
+    }
+
     @Override
     @Transactional
     public Email createEmail(Email email) {

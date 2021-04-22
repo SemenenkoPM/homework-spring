@@ -6,15 +6,15 @@
 </head>
 <body>
 
-<form th:method="post" th:action="@{/editEmailById}" th:object="${email}">
-<!--    <div class="row">-->
-<!--        <label for="id-input">ID:</label>-->
-<!--        <input id="id-input" name="id" type="text" readonly="readonly" th:value="${email.id}"/>-->
-<!--    </div>-->
+<form th:method="POST" th:action="@{/newEmail/{id}(id=${email.id})}" action="newEmail.html">
+    <div class="row">
+        <label for="id-input">ID:</label>
+        <input id="id-input" name="id" type="text" readonly="readonly" th:value="${email.id}"/>
+    </div>
 
     <div class="row">
         <label for="email-input">Email:</label>
-        <input id="email-input" name="email" type="text"/>
+        <input id="email-input" th:value="${email.email}" type="text"/>
     </div>
 
     <div class="row">
