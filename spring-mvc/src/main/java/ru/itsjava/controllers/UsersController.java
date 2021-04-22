@@ -11,11 +11,11 @@ import ru.itsjava.service.UserService;
 public class UsersController {
     private final UserService userService;
 
-//    @RequestMapping(value = "/createUser", method = RequestMethod.POST)
-//    public String createUser(@ModelAttribute()){
-//
-//        return "createUser";
-//    }
+    @GetMapping("/")
+    public String mainMenu(Model model){
+        model.addAttribute("users", userService.getAllUsers());
+        return "/main/mainPage";
+    }
 
     @GetMapping( "/printAllUsers")
     public String getUserList(Model model) {
@@ -23,11 +23,11 @@ public class UsersController {
         return "/user/printAllUsers";
     }
 
-//    @GetMapping("{id}/inputUserId")
-//    public String inputUserId(@PathVariable("id") long id, Model model) {
-//        model.addAttribute("user", userService.getUserById(id));
-//        return "user/inputUserId";
-//    }
+    @GetMapping("/printUserById/{id}")
+    public String printUserById(@PathVariable("id") long id, Model model) {
+        model.addAttribute("user", userService.getUserById(id));
+        return "user/printUserById";
+    }
 
     // метод работает
 //    @GetMapping("/printUserById")
@@ -36,17 +36,17 @@ public class UsersController {
 //        return "/user/printUserById";
 //    }
 
-        @GetMapping("/inputUserId")
-    public String inputUserId() {
-        return "user/inputUserId";
-    }
+//        @GetMapping("/inputUserId")
+//    public String inputUserId() {
+//        return "user/inputUserId";
+//    }
 
 
-    @GetMapping("/{id}/printUserById")
-    public String printUserById(@PathVariable("id") String id, Model model){
-        model.addAttribute("user", userService.getUserById(Long.parseLong(id)));
-        return "/user/printUserById";
-    }
+//    @PostMapping("/{id}/printUserById")
+//    public String printUserById(@PathVariable("id") String id, Model model){
+//        model.addAttribute("user", userService.getUserById(Long.parseLong(id)));
+//        return "/user/printUserById";
+//    }
 
 
 
