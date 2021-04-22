@@ -18,8 +18,8 @@ public class EmailController {
         return "email/newEmail";
     }
 @PostMapping("/newEmail/{id}")
-    public String editEmailById(Email email){
-        emailService.updateEmailById(email.getId(), email.getEmail());
+    public String editEmailById(@ModelAttribute(value ="id") long id, @ModelAttribute(value ="email") String email){
+        emailService.updateEmailById(id, email);
         return "redirect:/";
 }
 }
