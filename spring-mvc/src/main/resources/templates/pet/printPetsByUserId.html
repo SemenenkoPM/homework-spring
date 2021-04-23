@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Print pets by user id</title>
+  <style type="text/css">
+    body {
+      padding: 50px;
+    }
+
+    .pets td {
+      border: 1px solid #000000;
+      padding: 15px;
+    }
+  </style>
+</head>
+<body>
+<h1>Pets:</h1>
+
+<table class="pets">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>What Pet</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="pet : ${pets}">
+    <td th:text="${pet.id}"></td>
+    <td th:text="${pet.name}"></td>
+    <td th:text="${pet.whatPet}"></td>
+    <td>
+      <a th:href="@{/deletePet/{id}(id=${pet.id})}" href="/deletePet/{id}"> Delete pet</a>
+    </td>
+
+  </tr>
+  </tbody>
+
+</table>
+
+<!--      <a th:href="@{/getPetsByUserId/{id}(id=${user.id})}" href="/getPetsByUserId">Add new pet</a>-->
+
+
+
+<h3><a href="/">Для возврата в основное меню нажмите сюда</a></h3>
+</body>
+</html>

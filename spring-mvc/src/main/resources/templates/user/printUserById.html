@@ -26,6 +26,7 @@
         <th>Email</th>
         <th></th>
         <th>Pets</th>
+        <th></th>
         <th>Community</th>
     </tr>
     </thead>
@@ -39,6 +40,10 @@
             <a th:href="@{/newEmail/{id}(id=${user.email.getId()})}" href="/newEmail">Edit email</a>
         </td>
         <td th:text="${user.pets}"></td>
+        <td>
+            <a th:href="@{/getPetsByUserId/{id}(id=${user.id})}" href="/getPetsByUserId">Edit pet</a>
+
+        </td>
         <td th:text="${user.community}"></td>
     </tr>
     </tbody>

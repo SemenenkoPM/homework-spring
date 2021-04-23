@@ -19,6 +19,11 @@ public class PetServiceImpl implements PetService {
         return petRepository.save(pet);
     }
 
+    @Override
+    public Pet getPetById(long id) {
+        return petRepository.findById(id).get();
+    }
+
     @Transactional(readOnly = true)
     public List<Pet> getPetByUserId(long userId) {
         return petRepository.findByUserId(userId);

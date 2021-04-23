@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Form for new pet</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/newEmail/{id}(id=${email.id})}" action="newEmail.html">
+  <div class="row">
+    <label for="id-input">ID:</label>
+    <input id="id-input" name="id" type="text" readonly="readonly" th:value="${email.id}"/>
+  </div>
+
+  <div class="row">
+    <label for="email-input">Email:</label>
+    <input id="email-input" name="email" th:value="${email.email}" type="text"/>
+  </div>
+
+  <div class="row">
+    <button type="submit">Add</button>
+  </div>
+
+</body>
+</html>
