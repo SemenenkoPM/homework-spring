@@ -25,4 +25,9 @@ public class PetController {
         petService.deletePetById(id);
         return "redirect:/";
     }
+
+    @GetMapping("/formForCreateNewPet/{id}")
+    public String formForCreateNewPet(@PathVariable("id") long id, Model model){
+        return "pet/formForCreateNewPet";
+    }
 }
