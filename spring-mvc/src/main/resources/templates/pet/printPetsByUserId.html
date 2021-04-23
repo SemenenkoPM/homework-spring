@@ -23,6 +23,7 @@
     <th>ID</th>
     <th>Name</th>
     <th>What Pet</th>
+    <th>User Id</th>
   </tr>
   </thead>
   <tbody>
@@ -30,21 +31,17 @@
     <td th:text="${pet.id}"></td>
     <td th:text="${pet.name}"></td>
     <td th:text="${pet.whatPet}"></td>
+    <td th:text="${pet.userId}"></td>
     <td>
       <a th:href="@{/deletePet/{id}(id=${pet.id})}" href="/deletePet/{id}"> Delete pet</a>
     </td>
     <td>
-  <a th:href="@{/formForCreateNewPet/{id}(id=${pet.id})}" href="/formForCreateNewPet/{id}">Add new pet</a>
+<a th:href="@{/formForCreateNewPet/{userId}(userId=${pet.userId})}" href="/formForCreateNewPet/{userId}">Add new pet</a>
     </td>
-
   </tr>
   </tbody>
 
 </table>
-
-
-
-
 <h3><a href="/">Для возврата в основное меню нажмите сюда</a></h3>
 </body>
 </html>

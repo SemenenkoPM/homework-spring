@@ -2,19 +2,24 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Form for edit pet</title>
+  <title>Form for create pet</title>
 </head>
 <body>
-
-<form th:method="POST" th:action="@{/editPet/{id}(id=${pet.id})}" action="newEmail.html">
+<H3><a>Введите новую зверушку</a></H3>
+<form th:method="POST" th:action="@{/formForCreateNewPet/{userId}(userId=${userId})}" action="formForCreateNewPet.html">
   <div class="row">
-    <label for="id-input">ID:</label>
-    <input id="id-input" name="id" type="text" readonly="readonly" th:value="${email.id}"/>
+    <label for="name-input">Name:</label>
+    <input id="name-input" name="name" type="text"  th:value="${pet.name}"/>
   </div>
 
   <div class="row">
-    <label for="email-input">Email:</label>
-    <input id="email-input" name="email" th:value="${email.email}" type="text"/>
+    <label for="whatPet-input">What pet:</label>
+    <input id="whatPet-input" name="whatPet" th:value="${pet.whatPet}" type="text"/>
+  </div>
+
+  <div class="row">
+    <label for="userId-input">User Id:</label>
+    <input id="userId-input" name="userId" th:value="${pet.userId}" type="text" readonly="readonly"/>
   </div>
 
   <div class="row">
