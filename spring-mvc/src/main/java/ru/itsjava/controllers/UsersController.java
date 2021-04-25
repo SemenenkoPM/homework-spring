@@ -3,8 +3,8 @@ package ru.itsjava.controllers;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import ru.itsjava.domain.User;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import ru.itsjava.service.UserService;
 
 @Controller
@@ -13,12 +13,12 @@ public class UsersController {
     private final UserService userService;
 
     @GetMapping("/")
-    public String mainMenu(Model model){
+    public String mainMenu(Model model) {
         model.addAttribute("users", userService.getAllUsers());
         return "/main/mainPage";
     }
 
-    @GetMapping( "/printAllUsers")
+    @GetMapping("/printAllUsers")
     public String getUserList(Model model) {
         model.addAttribute("users", userService.getAllUsers());
         return "user/printAllUsers";
@@ -31,34 +31,8 @@ public class UsersController {
     }
 
     @GetMapping("/deleteUserById/{id}")
-    public String deleteUserById(@PathVariable("id") long id){
+    public String deleteUserById(@PathVariable("id") long id) {
         userService.deleteUserById(id);
         return "redirect:/";
     }
-
-    public String createUser(){
-return null;
-    }
-
-    // метод работает
-//    @GetMapping("/printUserById")
-//    public String printUserById(@RequestParam("id") long id, Model model){
-//        model.addAttribute("user", userService.getUserById(id));
-//        return "/user/printUserById";
-//    }
-
-//        @GetMapping("/inputUserId")
-//    public String inputUserId() {
-//        return "user/inputUserId";
-//    }
-
-
-//    @PostMapping("/{id}/printUserById")
-//    public String printUserById(@PathVariable("id") String id, Model model){
-//        model.addAttribute("user", userService.getUserById(Long.parseLong(id)));
-//        return "/user/printUserById";
-//    }
-
-
-
 }

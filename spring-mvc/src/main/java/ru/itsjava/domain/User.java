@@ -5,7 +5,6 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.List;
 
-
 @Data
 @Entity
 public class User {
@@ -50,5 +49,4 @@ public class User {
     @ManyToOne(targetEntity = Community.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "community_id")
     private Community community;
-
 }

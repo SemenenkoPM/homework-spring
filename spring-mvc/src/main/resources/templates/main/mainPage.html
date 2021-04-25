@@ -14,24 +14,10 @@
 <br>
 <a>Нажмите на пользователя для отображения информации по нему</a>
 <div th:each="user : ${users}">
-<a th:href="@{/printUserById/{id}(id=${user.getId()})}" th:text="${user.getName()}"></a>
+    <a th:href="@{/printUserById/{id}(id=${user.getId()})}" th:text="${user.getName()}"></a>
     <td>
         <a th:href="@{/deleteUserById/{id}(id=${user.getId()})}">Удалить пользователя</a>
     </td>
 </div>
-
-
-
-<!--<h3><a href="/createUser">Создать пользователя</a></h3>-->
-<!--<h3><a href="/printAllUsers">Вывести всех пользователей</a></h3>-->
-<!--&lt;!&ndash;<h3><a href="/printUserById?id=1">Вывести пользователя по id</a></h3>&ndash;&gt;-->
-<!--<h3><a href="/inputUserId">Вывести пользователя по id</a></h3>-->
-<!--<h3><a href="/developer">Изменить email пользователя</a></h3>-->
-<!--<h3><a href="/developer">Добавить новую зверушку пользователю по id</a></h3>-->
-<!--<h3><a href="/developer">Удалить зверушку по id пользователя</a></h3>-->
-<!--<h3><a href="/developer">Удалить пользователя по id</a></h3>-->
-
-
-
 </body>
 </html>

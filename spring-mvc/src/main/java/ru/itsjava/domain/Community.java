@@ -19,6 +19,4 @@ public class Community {
     private long id;
 
     private String name;
-
-
 }
