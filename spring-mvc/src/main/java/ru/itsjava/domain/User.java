@@ -12,6 +12,14 @@ public class User {
 
     }
 
+    public User(String surname, String name, Email email, List<Pet> pets, Community community) {
+        this.surname = surname;
+        this.name = name;
+        this.email = email;
+        this.pets = pets;
+        this.community = community;
+    }
+
     public User(long id, String surname, String name, Email email, Community community) {
         this.id = id;
         this.surname = surname;

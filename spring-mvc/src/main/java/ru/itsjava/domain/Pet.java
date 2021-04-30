@@ -11,6 +11,12 @@ import javax.persistence.*;
 @Data
 @Entity
 public class Pet {
+    public Pet(long id, String name, String whatPet) {
+        this.id = id;
+        this.name = name;
+        this.whatPet = whatPet;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

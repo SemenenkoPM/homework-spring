@@ -37,14 +37,15 @@ public class MainMenuServiceImpl implements MainMenuService {
         System.out.println("Какой зверушкой обладает пользователь");
         String whatPet = consoleReader.readLine();
         User createdUser;
-        if (!(community.equals(""))) {
-            Community createdCommunity = communityService.createCommunity(community);
-            createdUser = userService.createUser(new User(0L, surname, name, new Email(0L, inputEmail), createdCommunity));
-        } else {
-            createdUser = userService.createUser(new User(0L, surname, name, new Email(0L, inputEmail)));
-        }
-        petService.createPet(new Pet(0L, petName, whatPet, createdUser.getId()));
-        System.out.println("Создали нового пользователя: " + userService.getUserById(createdUser.getId()));
+
+//        if (!(community.equals(""))) {
+//            Community createdCommunity = communityService.createCommunity(community);
+//            createdUser = userService.createUser(new User(0L, surname, name, new Email(0L, inputEmail), createdCommunity));
+//        } else {
+//            createdUser = userService.createUser(new User(0L, surname, name, new Email(0L, inputEmail)));
+//        }
+//        petService.createPet(new Pet(0L, petName, whatPet, createdUser.getId()));
+//        System.out.println("Создали нового пользователя: " + userService.getUserById(createdUser.getId()));
     }
 
     @Override
@@ -89,19 +90,19 @@ public class MainMenuServiceImpl implements MainMenuService {
 
     @Override
     public void getDataAndCheckIdForCreateNewPetByUserId() throws IOException {
-        try {
-            System.out.println("Введите id пользователя, кому добавляем зверушку");
-            long id = Long.parseLong(consoleReader.readLine());
-            if (userService.checkingIfUserExistsWithThisId(id)) {
-                System.out.println("Введите как зовут новую зверушку");
-                String name = consoleReader.readLine();
-                System.out.println("Введите какая теперь зверушка у пользователя");
-                String whatPet = consoleReader.readLine();
-                petService.createPet(new Pet(0L, name, whatPet, id));
-            } else System.err.println("Нет пользователя с таким id, так что зверушку мы не поменяем никак");
-        } catch (NumberFormatException numberFormatException) {
-            System.err.println("Некорректно введен Id пользователя, числа вводи!");
-        }
+//        try {
+//            System.out.println("Введите id пользователя, кому добавляем зверушку");
+//            long id = Long.parseLong(consoleReader.readLine());
+//            if (userService.checkingIfUserExistsWithThisId(id)) {
+//                System.out.println("Введите как зовут новую зверушку");
+//                String name = consoleReader.readLine();
+//                System.out.println("Введите какая теперь зверушка у пользователя");
+//                String whatPet = consoleReader.readLine();
+//                petService.createPet(new Pet(0L, name, whatPet, id));
+//            } else System.err.println("Нет пользователя с таким id, так что зверушку мы не поменяем никак");
+//        } catch (NumberFormatException numberFormatException) {
+//            System.err.println("Некорректно введен Id пользователя, числа вводи!");
+//        }
     }
 
     @Override

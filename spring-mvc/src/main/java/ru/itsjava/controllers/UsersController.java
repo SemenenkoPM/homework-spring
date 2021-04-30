@@ -12,6 +12,10 @@ import ru.itsjava.service.UserService;
 public class UsersController {
     private final UserService userService;
 
+
+
+
+
     @GetMapping("/")
     public String mainMenu(Model model) {
         model.addAttribute("users", userService.getAllUsers());

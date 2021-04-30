@@ -13,10 +13,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
+    private final PetService petService;
+    private final CommunityService communityService;
 
     @Override
     @Transactional
     public User createUser(User user) {
+        
         return userRepository.save(user);
     }
 
