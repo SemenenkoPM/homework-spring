@@ -46,7 +46,6 @@ public class User {
     private String name;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    // как работает lasy, не вытащить пользователя при лази
     @JoinColumn(name = "email_id", nullable = false)
     private Email email;
 
