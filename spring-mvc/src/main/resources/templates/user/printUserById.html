@@ -1,45 +1,45 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8"/>-->
-<!--    <title>PrintUserById</title>-->
-<!--    <link type="text/css" link rel="stylesheet" href="../../static/css/printForm.css" th:href="@{/css/printForm.css}">-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>PrintUserById</title>
+    <link type="text/css" link rel="stylesheet" href="../../static/css/printForm.css" th:href="@{/css/printForm.css}">
+    <link type="text/css" link rel="stylesheet" href="../../static/css/button.css" th:href="@{/css/button.css}">
+</head>
+<body>
+<h1>User:</h1>
 
-<!--</head>-->
-<!--<body>-->
-<!--<h1>User:</h1>-->
+<table class="table">
+    <thead>
+    <tr>
+        <th width="30">ID</th>
+        <th width="150">Surname</th>
+        <th width="150">Name</th>
+        <th>Email</th>
+        <th width="50"></th>
+        <th>Pets</th>
+        <th width="50"></th>
+        <th>Community</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="users : ${user}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.surname}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.email}"></td>
+        <td>
+            <a th:href="@{/newEmail/{id}(id=${user.email.getId()})}" href="/newEmail">Edit email</a>
+        </td>
+        <td th:text="${user.pets}"></td>
+        <td>
+            <a th:href="@{/getPetsByUserId/{id}(id=${user.id})}" href="/getPetsByUserId">Edit pet</a>
 
-<!--<table class="table">-->
-<!--    <thead>-->
-<!--    <tr>-->
-<!--        <th width="30">ID</th>-->
-<!--        <th width="150">Surname</th>-->
-<!--        <th width="150">Name</th>-->
-<!--        <th>Email</th>-->
-<!--        <th width="50"></th>-->
-<!--        <th>Pets</th>-->
-<!--        <th width="50"></th>-->
-<!--        <th>Community</th>-->
-<!--    </tr>-->
-<!--    </thead>-->
-<!--    <tbody>-->
-<!--    <tr th:each="user : ${user}">-->
-<!--        <td th:text="${user.id}"></td>-->
-<!--        <td th:text="${user.surname}"></td>-->
-<!--        <td th:text="${user.name}"></td>-->
-<!--        <td th:text="${user.email}"></td>-->
-<!--        <td>-->
-<!--            <a th:href="@{/newEmail/{id}(id=${user.email.getId()})}" href="/newEmail">Edit email</a>-->
-<!--        </td>-->
-<!--        <td th:text="${user.pets}"></td>-->
-<!--        <td>-->
-<!--            <a th:href="@{/getPetsByUserId/{id}(id=${user.id})}" href="/getPetsByUserId">Edit pet</a>-->
-
-<!--        </td>-->
-<!--        <td th:text="${user.community}"></td>-->
-<!--    </tr>-->
-<!--    </tbody>-->
-<!--</table>-->
-<!--<h3><a href="/">Для возврата в основное меню нажмите сюда</a></h3>-->
-<!--</body>-->
-<!--</html>-->
+        </td>
+        <td th:text="${user.community}"></td>
+    </tr>
+    </tbody>
+</table>
+<a href="/" class="blubtn">Home</a>
+</body>
+</html>

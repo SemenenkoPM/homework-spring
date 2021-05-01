@@ -4,17 +4,7 @@
     <meta charset="UTF-8">
     <title>Print pets by user id</title>
     <link type="text/css" link rel="stylesheet" href="../../static/css/printForm.css" th:href="@{/css/printForm.css}">
-
-    <!--    <style type="text/css">-->
-    <!--        body {-->
-    <!--            padding: 50px;-->
-    <!--        }-->
-
-    <!--        .pets td {-->
-    <!--            border: 1px solid #000000;-->
-    <!--            padding: 15px;-->
-    <!--        }-->
-    <!--    </style>-->
+    <link type="text/css" link rel="stylesheet" href="../../static/css/button.css" th:href="@{/css/button.css}">
 </head>
 <body>
 <h1>Pets:</h1>
@@ -43,6 +33,6 @@
 </table>
 <a th:href="@{/formForCreateNewPet/{userId}(userId=${userid})}" href="/formForCreateNewPet/{userId}">Add
     new pet</a>
-<h3><a href="/">Для возврата в основное меню нажмите сюда</a></h3>
+<a href="/" class="blubtn">Home</a>
 </body>
 </html>
