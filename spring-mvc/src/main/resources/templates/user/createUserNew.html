@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link type="text/css" link rel="stylesheet" href="../../static/css/createForm.css" th:href="@{/css/createForm.css}">
+    <title>Create User</title>
+</head>
+
+<body>
+<div class="row" id="advanced-search-form">
+    <h2>Create User</h2>
+    <form th:method="post" th:action="@{/createUser}">
+        <div class="form-group">
+            <label for="surName">Surname</label>
+            <input type="text" class="form-control" placeholder="Surname" id="surName" name="surname"
+                   th:value="${userDto.surname}"/>
+        </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" placeholder="Name" id="name" name="name" th:value="${userDto.name}">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" placeholder="Email" id="email" name="emailName"
+                   th:value="${userDto.emailName}">
+        </div>
+        <div class="form-group">
+            <label for="petName">Pet Name</label>
+            <input type="text" class="form-control" placeholder="Pet Name" id="petName" name="petName"
+                   th:value="${petDto.petName}">
+        </div>
+        <div class="form-group">
+            <label for="whatPet">What pet</label>
+            <input type="text" class="form-control" placeholder="What pet" id="whatPet" name="whatPet"
+                   th:value="${petDto.whatPet}">
+        </div>
+        <div class="form-group">
+            <label for="community">Community</label>
+            <input type="text" class="form-control" placeholder="Community" id="community" name="communityName"
+                   th:value="${userDto.communityName}">
+        </div>
+
+        <button type="submit" class="btn btn-info btn-lg btn-responsive"> Save</button>
+    </form>
+</div>
+</body>
+
+</html>

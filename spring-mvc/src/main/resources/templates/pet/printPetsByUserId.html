@@ -3,27 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Print pets by user id</title>
-    <style type="text/css">
-        body {
-            padding: 50px;
-        }
+    <link type="text/css" link rel="stylesheet" href="../../static/css/printForm.css" th:href="@{/css/printForm.css}">
 
-        .pets td {
-            border: 1px solid #000000;
-            padding: 15px;
-        }
-    </style>
+    <!--    <style type="text/css">-->
+    <!--        body {-->
+    <!--            padding: 50px;-->
+    <!--        }-->
+
+    <!--        .pets td {-->
+    <!--            border: 1px solid #000000;-->
+    <!--            padding: 15px;-->
+    <!--        }-->
+    <!--    </style>-->
 </head>
 <body>
 <h1>Pets:</h1>
 
-<table class="pets">
+<table class="table">
     <thead>
     <tr>
-        <th>ID</th>
+        <th width="30">ID</th>
         <th>Name</th>
         <th>What Pet</th>
-        <th>User Id</th>
+        <th width="30">User Id</th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -38,8 +41,8 @@
     </tr>
     </tbody>
 </table>
-    <a th:href="@{/formForCreateNewPet/{userId}(userId=${userid})}" href="/formForCreateNewPet/{userId}">Add
-        new pet</a>
+<a th:href="@{/formForCreateNewPet/{userId}(userId=${userid})}" href="/formForCreateNewPet/{userId}">Add
+    new pet</a>
 <h3><a href="/">Для возврата в основное меню нажмите сюда</a></h3>
 </body>
 </html>

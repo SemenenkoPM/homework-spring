@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Menu</title>
+    <link type="text/css" link rel="stylesheet" href="../../static/css/printForm.css" th:href="@{/css/printForm.css}">
+
+</head>
+<body>
+<table class="table">
+    <thead>
+    <tr>
+        <th width="30">ID</th>
+        <th width="150">Surname</th>
+        <th width="150">Name</th>
+        <th width="30"></th>
+        <th width="30"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.surname}"></td>
+        <td th:text="${user.name}"></td>
+        <td>
+            <a th:href="@{/printUserById/{id}(id=${user.getId()})}" href="/printUserById/">Edit</a>
+        </td>
+        <td>
+            <a th:href="@{/deleteUserById/{id}(id=${user.getId()})}" href="/deleteUserById/">Delete</a>
+        </td>
+    </tr>
+    ...
+    </tbody>
+</table>
+<h3><a href="/">Для возврата в основное меню нажмите сюда</a></h3>
+</body>
+</html>

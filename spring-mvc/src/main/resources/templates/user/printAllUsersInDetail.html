@@ -1,28 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Users list</title>
-    <style type="text/css">
-        body {
-            padding: 50px;
-        }
-
-        .users td {
-            border: 1px solid #000000;
-            padding: 15px;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <title>Print All Users</title>
+    <link type="text/css" link rel="stylesheet" href="../../static/css/printForm.css" th:href="@{/css/printForm.css}">
 </head>
 <body>
-<h1>Users:</h1>
-
-<table class="users">
+<table class="table">
     <thead>
     <tr>
-        <th>ID</th>
-        <th>Surname</th>
-        <th>Name</th>
+        <th width="30">ID</th>
+        <th width="150">Surname</th>
+        <th width="150">Name</th>
         <th>Email</th>
         <th>Pets</th>
         <th>Community</th>
@@ -37,9 +26,9 @@
         <td th:text="${user.pets}"></td>
         <td th:text="${user.community}"></td>
     </tr>
+    ...
     </tbody>
 </table>
-
 <h3><a href="/">Для возврата в основное меню нажмите сюда</a></h3>
 </body>
 </html>

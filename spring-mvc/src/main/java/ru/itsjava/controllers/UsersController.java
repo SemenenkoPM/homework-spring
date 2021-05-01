@@ -21,7 +21,7 @@ public class UsersController {
     public String formForCreateUser(Model model) {
         model.addAttribute("userDto", new UserDto());
         model.addAttribute("petDto", new PetDto());
-        return "user/createUser";
+        return "user/createUserNew";
     }
 
     @PostMapping("/createUser")
@@ -33,15 +33,20 @@ public class UsersController {
     }
 
     @GetMapping("/")
-    public String mainMenu(Model model) {
-        model.addAttribute("users", userService.getAllUsers());
-        return "/main/mainPage";
+    public String mainMenu() {
+        return "/menu/index";
     }
 
     @GetMapping("/printAllUsers")
     public String getUserList(Model model) {
         model.addAttribute("users", userService.getAllUsers());
-        return "user/printAllUsers";
+        return "/user/printAllUsersInDetail";
+    }
+
+    @GetMapping("/userMenu")
+    public String userMenu(Model model) {
+        model.addAttribute("users", userService.getAllUsers());
+        return "user/userMenu";
     }
 
     @GetMapping("/printUserById/{id}")
