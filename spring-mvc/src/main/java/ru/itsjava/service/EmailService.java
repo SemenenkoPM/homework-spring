@@ -8,5 +8,5 @@ public interface EmailService {
 
     Email createEmail(Email email);
 
-    void updateEmailById(long id, String newEmail);
+    Email updateEmailById(long id, String newEmail);
 }

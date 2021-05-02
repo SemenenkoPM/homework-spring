@@ -25,9 +25,9 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     @Transactional
-    public void updateEmailById(long id, String newEmail) {
+    public Email updateEmailById(long id, String newEmail) {
         Email email = emailRepository.findById(id).get();
         email.setEmail(newEmail);
-        emailRepository.save(email);
+        return emailRepository.save(email);
     }
 }

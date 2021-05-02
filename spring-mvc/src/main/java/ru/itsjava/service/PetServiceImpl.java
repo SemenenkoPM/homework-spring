@@ -20,6 +20,7 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Pet getPetById(long id) {
         return petRepository.findById(id).get();
     }
