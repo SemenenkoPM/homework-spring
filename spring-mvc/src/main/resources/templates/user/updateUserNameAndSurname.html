@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link type="text/css" link rel="stylesheet" href="../../static/css/createForm.css" th:href="@{/css/createForm.css}">
+    <title>Update User name and Surname</title>
+</head>
+<body>
+<div class="row" id="advanced-search-form">
+    <h2>Update User</h2>
+    <form th:method="post" th:action="@{/updateUserNameAndSurname/{id}(id=${user.id})}">
+        <div class="form-group">
+            <label for="id-input">ID:</label>
+            <input id="id-input" class="form-control" name="id" type="User" readonly="readonly"
+                   th:value="${user.id}"/>
+        </div>
+        <div class="form-group">
+            <label for="surName">Surname</label>
+            <input type="text" class="form-control" placeholder="Surname" id="surName" name="surname"
+                   th:value="${user.surname}"/>
+        </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" placeholder="Name" id="name" name="name"
+                   th:value="${user.name}">
+        </div>
+
+        <button type="submit" class="btn btn-info btn-lg btn-responsive"> Save</button>
+    </form>
+</div>
+
+
+</body>
+</html>

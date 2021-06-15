@@ -15,6 +15,7 @@
         <th width="30">ID</th>
         <th width="150">Surname</th>
         <th width="150">Name</th>
+        <th width="50"></th>
         <th>Email</th>
         <th width="50"></th>
         <th>Pets</th>
@@ -27,6 +28,10 @@
         <td th:text="${user.id}"></td>
         <td th:text="${user.surname}"></td>
         <td th:text="${user.name}"></td>
+        <td>
+            <a th:href="@{/updateUserNameAndSurname/{id}(id=${user.email.getId()})}" href="/updateUserNameAndSurname/">Edit
+                user</a>
+        </td>
         <td th:text="${user.email}"></td>
         <td>
             <a th:href="@{/newEmail/{id}(id=${user.email.getId()})}" href="/newEmail">Edit email</a>
