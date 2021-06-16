@@ -9,11 +9,5 @@ import ru.itsjava.service.UserServiceImpl;
 public class MyApplication {
     public static void main(String[] args) {
         var context = SpringApplication.run(MyApplication.class);
-//        UserService userService = context.getBean(UserServiceImpl.class);
-//        userService.updateUserNameAndSurname(1L, "Andreev", "Andrey");
-//        System.out.println("Update complete");
-//        System.out.println("userService.getUserById(1L) = " + userService.getUserById(1L));
     }
-
-
 }
