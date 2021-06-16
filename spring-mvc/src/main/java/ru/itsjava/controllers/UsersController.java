@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.itsjava.controllers.dto.PetDto;
@@ -58,6 +59,18 @@ public class UsersController {
     @GetMapping("/deleteUserById/{id}")
     public String deleteUserById(@PathVariable("id") long id) {
         userService.deleteUserById(id);
+        return "redirect:/";
+    }
+
+    @GetMapping("/updateUserNameAndSurname/{id}")
+    public String formForUpdateUserNameAndSurname(@PathVariable("id") String id, Model model) {
+        model.addAttribute("user", userService.getUserById(Long.parseLong(id)));
+        return "user/updateUserNameAndSurname";
+    }
+
+    @PostMapping("/updateUserNameAndSurname/{id}")
+    public String updateUserNameAndSurname(@ModelAttribute(value = "id") long id, @ModelAttribute(value = "surname") String surname, @ModelAttribute(value = "name") String name) {
+        userService.updateUserNameAndSurname(id, surname, name);
         return "redirect:/";
     }
 }

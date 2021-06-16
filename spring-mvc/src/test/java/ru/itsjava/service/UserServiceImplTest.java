@@ -53,4 +53,15 @@ public class UserServiceImplTest {
         User savedUserDb = userService.createUser(user, pet);
         Assertions.assertEquals(savedUserDb, userService.getUserById(savedUserDb.getId()));
     }
+
+    @DisplayName("изменять имя и фамилию у user")
+    @Test
+    public void shouldHaveCorrectUpdateUserNameAndSurname(){
+        User savedUserDB = userService.createUser(user, pet);
+        savedUserDB.setName("new Name");
+        savedUserDB.setSurname("new Surname");
+        Assertions.assertEquals(savedUserDB,
+                userService.updateUserNameAndSurname(savedUserDB.getId(),"new Surname", "new Name"));
+
+    }
 }
